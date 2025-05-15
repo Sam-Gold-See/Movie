@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.samgoldsee</groupId>
+    <artifactId>movie-backend</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>movie-common</module>
+        <module>movie-pojo</module>
+        <module>movie-server</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <lombok>1.18.36</lombok>
+        <jackson-databind>2.18.3</jackson-databind>
+        <fastjson>2.0.54</fastjson>
+        <commons.lang3>3.17.0</commons.lang3>
+        <jjwt>0.12.6</jjwt>
+        <jaxb-api>2.3.1</jaxb-api>
+        <mysql>8.0.33</mysql>
+        <mybatis-plus>3.5.5</mybatis-plus>
+        <druid>1.2.24</druid>
+        <pagehelper>2.1.0</pagehelper>
+        <aspectj>1.9.22</aspectj>
+        <redis>3.4.3</redis>
+        <cache>3.4.3</cache>
+        <poi>5.4.0</poi>
+        <email>1.5</email>
+        <amqp>3.4.3</amqp>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Lombok pojo common server -->
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok}</version>
+            </dependency>
+
+            <!-- Object 和 JSON 之间的序列化、反序列化 pojo server -->
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-databind}</version>
+            </dependency>
+
+            <!-- Object 和 JSON 之间的序列化、反序列化 common server -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson}</version>
+            </dependency>
+
+            <!-- 工具类包 StringUtils等 common -->
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3}</version>
+            </dependency>
+
+            <!-- JWT令牌 common -->
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt}</version>
+            </dependency>
+
+            <!-- Object 和 XMl 对象转换 common server -->
+
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb-api}</version>
+            </dependency>
+
+            <!-- MySQL server -->
+
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>${mysql}</version>
+            </dependency>
+
+            <!-- MyBatis-Plus server -->
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus}</version>
+            </dependency>
+
+            <!-- Druid 数据库连接池的 Spring Boot Starter server -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid}</version>
+            </dependency>
+
+            <!-- 分页查询插件 server -->
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper}</version>
+            </dependency>
+
+            <!-- 提供执行 AOP 相关操作的运行时库 server -->
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj}</version>
+            </dependency>
+
+            <!-- 将定义的切面织入到 Java 类 server -->
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj}</version>
+            </dependency>
+
+            <!-- Redis server -->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${redis}</version>
+            </dependency>
+
+            <!-- Cache Spring Boot 提供的缓存支持 Starter server -->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-cache</artifactId>
+                <version>${cache}</version>
+            </dependency>
+
+            <!-- POI 操作 MS Office 软件 .xls server -->
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi}</version>
+            </dependency>
+
+            <!-- POI 操作 MS Office 软件 .xlsx server -->
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi}</version>
+            </dependency>
+
+            <!-- 邮箱服务 common -->
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-email</artifactId>
+                <version>${email}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,19 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: movie-server
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: ${movie.datasource.driver-class-name}
+    name: movie
+    url: jdbc:my://${movie.datasource.host}:${movie.datasource.database}
+    username: ${movie.datasource.username}
+    password: ${movie.datasource.password}
+  data:
+    redis:
+      host: ${movie.redis.host}
+      port: ${movie.redis.port}
+      database: ${movie.redis.database}
