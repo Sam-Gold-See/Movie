@@ -9,7 +9,7 @@ spring:
   datasource:
     driver-class-name: ${movie.datasource.driver-class-name}
     name: movie
-    url: jdbc:my://${movie.datasource.host}:${movie.datasource.database}
+    url: jdbc:my://${movie.datasource.host}:${movie.datasource.port}/${movie.datasource.database}
     username: ${movie.datasource.username}
     password: ${movie.datasource.password}
   data:
@@ -17,3 +17,17 @@ spring:
       host: ${movie.redis.host}
       port: ${movie.redis.port}
       database: ${movie.redis.database}
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      samgoldsee:
+        movie:
+          mapper: debug
+          service: info
+          controller: info

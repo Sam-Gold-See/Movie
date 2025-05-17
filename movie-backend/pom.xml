@@ -38,7 +38,7 @@
         <cache>3.4.3</cache>
         <poi>5.4.0</poi>
         <email>1.5</email>
-        <amqp>3.4.3</amqp>
+        <knife4j>4.5.0</knife4j>
     </properties>
 
     <dependencyManagement>
@@ -190,6 +190,14 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-email</artifactId>
                 <version>${email}</version>
+            </dependency>
+
+            <!-- 接口文档 server -->
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j}</version>
             </dependency>
 
         </dependencies>
