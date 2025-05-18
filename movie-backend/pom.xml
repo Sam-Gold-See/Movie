@@ -27,7 +27,6 @@
         <jackson-databind>2.18.3</jackson-databind>
         <fastjson>2.0.54</fastjson>
         <commons.lang3>3.17.0</commons.lang3>
-        <jjwt>0.12.6</jjwt>
         <jaxb-api>2.3.1</jaxb-api>
         <mysql>8.0.33</mysql>
         <mybatis-plus>3.5.5</mybatis-plus>
@@ -74,26 +73,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang3}</version>
-            </dependency>
-
-            <!-- JWT令牌 common -->
-
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-api</artifactId>
-                <version>${jjwt}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-impl</artifactId>
-                <version>${jjwt}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-jackson</artifactId>
-                <version>${jjwt}</version>
             </dependency>
 
             <!-- Object 和 XMl 对象转换 common server -->
