@@ -9,13 +9,93 @@ USE
 
 CREATE TABLE `user`
 (
-    `id`          BIGINT      NOT NULL PRIMARY KEY COMMENT '用户id',
-    `name`        VARCHAR(32) COMMENT '用户名',
-    `email`       VARCHAR(256) UNIQUE COMMENT '用户邮箱地址',
-    `password`    VARCHAR(64) NOT NULL COMMENT '用户登录密码',
-    `gender`      CHAR(1) COMMENT '用户性别(M:男 F:女)',
-    `level`       TINYINT      DEFAULT 0 COMMENT '账号权限(0:普通 1:VIP)',
-    `avatar`      VARCHAR(500) DEFAULT NULL COMMENT '头像资源链接',
-    `create_time` DATETIME COMMENT '创建时间',
-    `update_time` DATETIME COMMENT '更新时间'
+    `id`          INT AUTO_INCREMENT PRIMARY KEY COMMENT '用户id',
+    `name`        VARCHAR(32)  NOT NULL COMMENT '用户名',
+    `email`       VARCHAR(256) NOT NULL UNIQUE COMMENT '用户邮箱地址',
+    `password`    VARCHAR(256) NOT NULL COMMENT '用户登录密码',
+    `gender`      CHAR(1)      NOT NULL COMMENT '用户性别(M:男 F:女)',
+    `type`        TINYINT      DEFAULT 0 COMMENT '账号权限(0:普通 1:VIP)',
+    `avatar`      VARCHAR(256) DEFAULT NULL COMMENT '头像资源链接',
+    `create_time` DATETIME     NOT NULL COMMENT '创建时间',
+    `update_time` DATETIME     NOT NULL COMMENT '更新时间'
 ) COMMENT '用户';
+
+CREATE TABLE `movie_type`
+(
+    `id`   INT AUTO_INCREMENT PRIMARY KEY COMMENT '电影类型id',
+    `name` VARCHAR(32) NOT NULL UNIQUE COMMENT '电影类型名'
+) COMMENT '电影类型';
+
+CREATE TABLE `movie_zone`
+(
+    `id`   INT AUTO_INCREMENT PRIMARY KEY COMMENT '电影地区id',
+    `name` VARCHAR(32) NOT NULL UNIQUE COMMENT '电影地区名'
+) COMMENT '电影地区';
+
+CREATE TABLE `actor`
+(
+    `id`          INT PRIMARY KEY AUTO_INCREMENT COMMENT '演员id',
+    `name`        VARCHAR(50) NOT NULL COMMENT '演员名',
+    `avatar`      VARCHAR(256) DEFAULT NULL COMMENT '头像资源链接',
+    `description` TEXT
+) COMMENT '演员';
+
+CREATE TABLE director
+(
+    `id`          INT PRIMARY KEY AUTO_INCREMENT COMMENT '导演id',
+    `name`        VARCHAR(50) NOT NULL COMMENT '导演名',
+    `avatar`      VARCHAR(256) DEFAULT NULL COMMENT '头像资源链接',
+    `description` TEXT
+) COMMENT '导演';
+
+CREATE TABLE `movie`
+(
+    `id`           INT AUTO_INCREMENT PRIMARY KEY COMMENT '电影id',
+    `name`         VARCHAR(256) NOT NULL COMMENT '电影名',
+    `description`  TEXT         NOT NULL COMMENT '简介',
+    `zone_id`      INT          NOT NULL COMMENT '电影地区id',
+    `view`         INT          NOT NULL COMMENT '浏览数',
+    `poster`       VARCHAR(256) DEFAULT NULL COMMENT '海报链接',
+    `permission`   TINYINT      DEFAULT 0 COMMENT '观看权限(0:普通 1:VIP)',
+    `release_date` DATE         NOT NULL COMMENT '上线日期',
+    `create_time`  DATETIME     NOT NULL COMMENT '创建时间',
+    `update_time`  DATETIME     NOT NULL COMMENT '更新时间',
+    FOREIGN KEY (`zone_id`) REFERENCES `movie_zone` (`id`)
+) COMMENT '电影';
+
+CREATE TABLE `actor-movie`
+(
+    `actor_id` INT NOT NULL,
+    `movie_id` INT NOT NULL,
+    PRIMARY KEY (`actor_id`, `movie_id`),
+    FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`),
+    FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
+) COMMENT '演员-电影关联表';
+
+CREATE TABLE `director-movie`
+(
+    `director_id` INT NOT NULL,
+    `movie_id`    INT NOT NULL,
+    PRIMARY KEY (`director_id`, `movie_id`),
+    FOREIGN KEY (`director_id`) REFERENCES `director` (`id`),
+    FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
+) COMMENT '导演-电影关联表';
+
+CREATE TABLE `movie-movie_type`
+(
+    `movie_id` INT NOT NULL,
+    `type_id`  INT NOT NULL,
+    PRIMARY KEY (`movie_id`, `type_id`),
+    FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`),
+    FOREIGN KEY (`type_id`) REFERENCES `movie_type` (`id`)
+) COMMENT '电影-类型关联表';
+
+CREATE TABLE `user_like`
+(
+    `id`          INT AUTO_INCREMENT PRIMARY KEY COMMENT '点赞id',
+    `user_id`     INT      NOT NULL,
+    `movie_id`    INT      NOT NULL,
+    `create_time` DATETIME NOT NULL COMMENT '创建时间',
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+    FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
+) COMMENT '点赞';
