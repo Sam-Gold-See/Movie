@@ -15,16 +15,16 @@
         <!-- Pojo模块 -->
 
         <dependency>
-            <groupId>com.study</groupId>
-            <artifactId>online-study-pojo</artifactId>
+            <groupId>com.samgoldsee</groupId>
+            <artifactId>movie-pojo</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <!-- Common模块 -->
 
         <dependency>
-            <groupId>com.study</groupId>
-            <artifactId>online-study-common</artifactId>
+            <groupId>com.samgoldsee</groupId>
+            <artifactId>movie-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
