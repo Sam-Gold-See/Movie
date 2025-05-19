@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Tag(name = "MappingController")
 public class MappingController {
 
-    @Operation(summary = "跳转至index请求")
+    @Operation(summary = "ToInex")
     @GetMapping("/")
-    public String index() {
+    public String toIndex() {
         return "index";
     }
 }
