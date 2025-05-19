@@ -37,7 +37,7 @@ CREATE TABLE `actor`
     `id`          INT PRIMARY KEY AUTO_INCREMENT COMMENT '演员id',
     `name`        VARCHAR(50) NOT NULL COMMENT '演员名',
     `avatar`      VARCHAR(256) DEFAULT NULL COMMENT '头像资源链接',
-    `description` TEXT
+    `description` TEXT COMMENT '演员简介'
 ) COMMENT '演员';
 
 CREATE TABLE director
@@ -45,7 +45,7 @@ CREATE TABLE director
     `id`          INT PRIMARY KEY AUTO_INCREMENT COMMENT '导演id',
     `name`        VARCHAR(50) NOT NULL COMMENT '导演名',
     `avatar`      VARCHAR(256) DEFAULT NULL COMMENT '头像资源链接',
-    `description` TEXT
+    `description` TEXT COMMENT '导演简介'
 ) COMMENT '导演';
 
 CREATE TABLE `movie`
@@ -65,8 +65,8 @@ CREATE TABLE `movie`
 
 CREATE TABLE `actor-movie`
 (
-    `actor_id` INT NOT NULL,
-    `movie_id` INT NOT NULL,
+    `actor_id` INT NOT NULL COMMENT '演员id',
+    `movie_id` INT NOT NULL COMMENT '电影id',
     PRIMARY KEY (`actor_id`, `movie_id`),
     FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
@@ -74,8 +74,8 @@ CREATE TABLE `actor-movie`
 
 CREATE TABLE `director-movie`
 (
-    `director_id` INT NOT NULL,
-    `movie_id`    INT NOT NULL,
+    `director_id` INT NOT NULL COMMENT '导演id',
+    `movie_id`    INT NOT NULL COMMENT '电影id',
     PRIMARY KEY (`director_id`, `movie_id`),
     FOREIGN KEY (`director_id`) REFERENCES `director` (`id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
@@ -83,9 +83,9 @@ CREATE TABLE `director-movie`
 
 CREATE TABLE `movie-movie_type`
 (
-    `movie_id` INT NOT NULL,
-    `type_id`  INT NOT NULL,
-    PRIMARY KEY (`movie_id`, `type_id`),
+    `movie_id` INT NOT NULL COMMENT '电影id',
+    `type_id`  INT NOT NULL COMMENT '电影类型id',
+    PRIMARY KEY (`type_id`, `movie_id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`),
     FOREIGN KEY (`type_id`) REFERENCES `movie_type` (`id`)
 ) COMMENT '电影-类型关联表';
@@ -93,8 +93,8 @@ CREATE TABLE `movie-movie_type`
 CREATE TABLE `user_like`
 (
     `id`          INT AUTO_INCREMENT PRIMARY KEY COMMENT '点赞id',
-    `user_id`     INT      NOT NULL,
-    `movie_id`    INT      NOT NULL,
+    `user_id`     INT      NOT NULL COMMENT '用户id',
+    `movie_id`    INT      NOT NULL COMMENT '电影id',
     `create_time` DATETIME NOT NULL COMMENT '创建时间',
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
