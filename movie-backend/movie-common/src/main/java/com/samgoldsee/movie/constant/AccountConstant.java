@@ -13,4 +13,7 @@ public class AccountConstant {
 
     // Redis 存储验证码键常量
     public static final String REDIS_KEY = "code:list:";
+
+    // 账号修改权限正常
+    public static final Integer PERMISSION = 1;
 }
