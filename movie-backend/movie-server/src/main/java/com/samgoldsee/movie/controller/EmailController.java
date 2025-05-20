@@ -6,7 +6,6 @@ import com.samgoldsee.movie.service.EmailService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -51,11 +50,6 @@ public class EmailController {
      */
     @PostMapping("/checkCode")
     @Operation(summary = "checkCode", description = "检查验证码是否正确")
-    @RequestBody(
-            description = "校验验证码请求参数",
-            required = true,
-            content = @Content(schema = @Schema(implementation = CheckCodeDTO.class))
-    )
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
             schema = @Schema(implementation = Result.class)
     ))
