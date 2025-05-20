@@ -17,6 +17,22 @@ spring:
       host: ${movie.redis.host}
       port: ${movie.redis.port}
       database: ${movie.redis.database}
+  mail:
+    host: ${movie.mail.host}
+    port: ${movie.mail.port}
+    username: ${movie.mail.username}
+    password: ${movie.mail.password}
+    protocol: ${movie.mail.protocol}
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

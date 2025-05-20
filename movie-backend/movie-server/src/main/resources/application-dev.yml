@@ -10,3 +10,9 @@ movie:
     host: 127.0.0.1
     port: 6379
     database: 1
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: SGSMovie@163.com
+    password: NUsfnQUqNpexMQGB
+    protocol: smtp
