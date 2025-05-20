@@ -9,4 +9,5 @@ public class MessageConstant {
     public static final String VERIFICATION_CODE_ERROR = "验证码错误";
     public static final String ACCOUNT_ALREADY_EXIST = "账号已存在";
     public static final String UNKNOWN_ERROR = "未知错误";
+    public static final String PERMISSION_ERROR = "权限不足";
 }
