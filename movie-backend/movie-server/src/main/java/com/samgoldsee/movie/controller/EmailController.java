@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @RequestMapping("/email")
-@Tag(name = "EmailController")
+@Tag(name = "邮件功能管理接口")
 public class EmailController {
 
     @Resource
@@ -30,7 +30,7 @@ public class EmailController {
      * @param email 目标邮箱
      */
     @GetMapping("/sendCode")
-    @Operation(summary = "sendCode", description = "向指定邮箱发送验证码，用于用户注册或登录验证")
+    @Operation(summary = "发送验证码", description = "向指定邮箱发送验证码，用于用户注册或登录验证")
     @Parameters({
             @Parameter(name = "email", description = "目标邮箱地址", required = true, example = "user@example.com", in = ParameterIn.QUERY)
     })
@@ -49,7 +49,7 @@ public class EmailController {
      * @param checkCodeDTO 校验验证码DTO
      */
     @PostMapping("/checkCode")
-    @Operation(summary = "checkCode", description = "检查验证码是否正确")
+    @Operation(summary = "校验验证码", description = "检查验证码是否正确")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
             schema = @Schema(implementation = Result.class)
     ))
