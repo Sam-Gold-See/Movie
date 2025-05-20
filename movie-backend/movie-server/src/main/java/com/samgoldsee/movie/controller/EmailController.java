@@ -1,10 +1,12 @@
 package com.samgoldsee.movie.controller;
 
+import com.samgoldsee.movie.dto.CheckCodeDTO;
 import com.samgoldsee.movie.result.Result;
 import com.samgoldsee.movie.service.EmailService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,10 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -42,6 +41,27 @@ public class EmailController {
     public Result<String> sendCode(@RequestParam String email) {
         log.info("请求验证码:{}", email);
         emailService.sendCode(email);
+        return Result.success();
+    }
+
+    /**
+     * 校验验证码
+     *
+     * @param checkCodeDTO 校验验证码DTO
+     */
+    @PostMapping("/checkCode")
+    @Operation(summary = "checkCode", description = "检查验证码是否正确")
+    @RequestBody(
+            description = "校验验证码请求参数",
+            required = true,
+            content = @Content(schema = @Schema(implementation = CheckCodeDTO.class))
+    )
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            schema = @Schema(implementation = Result.class)
+    ))
+    public Result<String> checkCode(@RequestBody CheckCodeDTO checkCodeDTO) {
+        log.info("验证验证码(邮箱{}):{}", checkCodeDTO.getEmail(), checkCodeDTO.getVerificationCode());
+        emailService.checkCode(checkCodeDTO);
         return Result.success();
     }
 }
