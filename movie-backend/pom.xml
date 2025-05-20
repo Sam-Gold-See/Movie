@@ -171,7 +171,7 @@
                 <version>${email}</version>
             </dependency>
 
-            <!-- 接口文档 server -->
+            <!-- 接口文档 server common -->
 
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
