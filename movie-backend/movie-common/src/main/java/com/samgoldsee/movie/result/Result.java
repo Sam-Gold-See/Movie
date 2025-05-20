@@ -12,10 +12,10 @@ import java.io.Serializable;
 @Schema(description = "全局统一响应结果", title = "Result")
 public class Result<T> implements Serializable {
 
-    @Schema(description = "状态码")
+    @Schema(description = "状态码", example = "1")
     private Integer code;
 
-    @Schema(description = "报错信息")
+    @Schema(description = "报错信息", example = "")
     private String msg;
 
     @Schema(description = "响应数据")
