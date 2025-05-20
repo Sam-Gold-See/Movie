@@ -9,7 +9,7 @@ spring:
   datasource:
     driver-class-name: ${movie.datasource.driver-class-name}
     name: movie
-    url: jdbc:my://${movie.datasource.host}:${movie.datasource.port}/${movie.datasource.database}
+    url: jdbc:mysql://${movie.datasource.host}:${movie.datasource.port}/${movie.datasource.database}
     username: ${movie.datasource.username}
     password: ${movie.datasource.password}
   data:
