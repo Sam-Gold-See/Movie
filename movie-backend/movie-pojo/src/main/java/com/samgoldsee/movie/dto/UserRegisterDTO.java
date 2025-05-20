@@ -32,6 +32,6 @@ public class UserRegisterDTO implements Serializable {
     private String password;
 
     // 用户性别(M:男 F:女)
-    @Schema(description = "性别", example = "M", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "性别(M:男 F:女)", example = "M", requiredMode = Schema.RequiredMode.REQUIRED)
     private Character gender;
 }
