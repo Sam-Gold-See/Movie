@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @Slf4j
-@Tag(name = "MappingController")
+@Tag(name = "页面跳转管理接口")
 public class MappingController {
 
-    @Operation(summary = "ToInex")
+    @Operation(summary = "跳转首页")
     @GetMapping("/")
     public String toIndex() {
         return "index";
