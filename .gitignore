@@ -3,3 +3,5 @@
 /movie-backend/movie-server/src/test
 
 /movie-backend/movie-server/target
+/movie-backend/movie-common/target
+/movie-backend/movie-pojo/target
