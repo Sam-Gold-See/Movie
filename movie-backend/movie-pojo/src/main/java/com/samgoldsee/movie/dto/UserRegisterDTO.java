@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(description = "用户DTO", title = "UserRegisterDTO")
+@Schema(description = "用户注册DTO", title = "UserRegisterDTO")
 public class UserRegisterDTO implements Serializable {
 
     @Serial
