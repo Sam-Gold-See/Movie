@@ -34,4 +34,7 @@ public class UserDTO implements Serializable {
 
     // 头像资源链接
     private String avatar;
+
+    // 验证码
+    private String verificationCode;
 }
