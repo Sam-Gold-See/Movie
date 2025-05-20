@@ -29,7 +29,7 @@
         <commons.lang3>3.17.0</commons.lang3>
         <jaxb-api>2.3.1</jaxb-api>
         <mysql>8.0.33</mysql>
-        <mybatis-plus>3.5.5</mybatis-plus>
+        <mybatis-plus>3.5.7</mybatis-plus>
         <druid>1.2.24</druid>
         <pagehelper>2.1.0</pagehelper>
         <aspectj>1.9.22</aspectj>
@@ -95,7 +95,7 @@
 
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus</artifactId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
                 <version>${mybatis-plus}</version>
             </dependency>
 
