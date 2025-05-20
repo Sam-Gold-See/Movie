@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.result;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,10 +9,16 @@ import java.io.Serializable;
  * 后端统一响应对象
  */
 @Data
+@Schema(description = "全局统一响应结果", title = "Result")
 public class Result<T> implements Serializable {
 
+    @Schema(description = "状态码")
     private Integer code;
+
+    @Schema(description = "报错信息")
     private String msg;
+
+    @Schema(description = "响应数据")
     private T data;
 
     public static <T> Result<T> success() {
