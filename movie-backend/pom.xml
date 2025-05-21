@@ -39,6 +39,7 @@
         <email>1.5</email>
         <knife4j>4.5.0</knife4j>
         <springdoc>2.7.0</springdoc>
+        <security>3.4.5</security>
     </properties>
 
     <dependencyManagement>
@@ -184,6 +185,14 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc}</version>
+            </dependency>
+
+            <!-- Spring Security server -->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${security}</version>
             </dependency>
 
         </dependencies>
