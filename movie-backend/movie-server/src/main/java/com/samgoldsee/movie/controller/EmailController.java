@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -35,6 +36,7 @@ public class EmailController {
             @Parameter(name = "email", description = "目标邮箱地址", required = true, example = "user@example.com", in = ParameterIn.QUERY)
     })
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = Result.class)
     ))
     public Result<String> sendCode(@RequestParam String email) {
@@ -51,6 +53,7 @@ public class EmailController {
     @PostMapping("/checkCode")
     @Operation(summary = "校验验证码", description = "检查验证码是否正确")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = Result.class)
     ))
     public Result<String> checkCode(@RequestBody CheckCodeDTO checkCodeDTO) {
