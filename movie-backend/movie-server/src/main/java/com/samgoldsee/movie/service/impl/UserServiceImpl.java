@@ -11,8 +11,8 @@ import com.samgoldsee.movie.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
 import java.util.Objects;
 
@@ -23,27 +23,35 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Resource
+    private PasswordEncoder passwordEncoder;
+
+    @Resource
     private StringRedisTemplate stringRedisTemplate;
 
+    /**
+     * 用户注册
+     *
+     * @param userRegisterDTO 用户注册DTO对象
+     */
     @Override
     public void register(UserRegisterDTO userRegisterDTO) {
         // 获取用户邮箱和验证码
         String email = userRegisterDTO.getEmail();
+
+        // 校验验证码
+        checkVerificationCodeStatus(email);
 
         User userDB = userMapper.getByEmail(email);
         if (userDB != null)
             // 账号已存在
             throw new AccountException(MessageConstant.ACCOUNT_ALREADY_EXIST);
 
-        // 校验验证码
-        checkVerificationCodeStatus(email);
-
         // 复制数据
         User user = new User();
         BeanUtils.copyProperties(userRegisterDTO, user);
 
         // 加密密码
-        user.setPassword(DigestUtils.md5DigestAsHex(userRegisterDTO.getPassword().getBytes()));
+        user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
         // 设置账号权限
         user.setType(AccountConstant.NORMAL_TYPE);
