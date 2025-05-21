@@ -33,7 +33,7 @@ public class User implements Serializable {
     // 用户性别(M:男 F:女)
     private Character gender;
 
-    // 账号权限(0:普通 1:VIP)
+    // 账号权限(false:普通 true:VIP)
     private Boolean type;
 
     // 头像资源链接
