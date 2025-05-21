@@ -16,4 +16,16 @@ public class MappingController {
     public String toIndex() {
         return "index";
     }
+
+    @Operation(summary = "跳转登录页")
+    @GetMapping("/toLogin")
+    public String toLogin() {
+        return "login";
+    }
+
+    @Operation(summary = "跳转注册页")
+    @GetMapping("/toRegister")
+    public String toRegister(){
+        return "register";
+    }
 }
