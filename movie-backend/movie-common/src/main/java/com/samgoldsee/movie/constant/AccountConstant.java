@@ -16,4 +16,10 @@ public class AccountConstant {
 
     // 账号修改权限正常
     public static final Integer PERMISSION = 1;
+
+    // 账号普通权限
+    public static final Boolean NORMAL_TYPE = Boolean.FALSE;
+
+    // 账号VIP权限
+    public static final Boolean VIP_TYPE = Boolean.TRUE;
 }
