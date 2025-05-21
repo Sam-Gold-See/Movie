@@ -29,4 +29,13 @@ public interface UserMapper {
             "(`name`, `email`, `password`, `gender`, `type`, `avatar`, `create_time`, `update_time`) " +
             "VALUES (#{name}, #{email}, #{password}, #{gender}, #{type}, #{avatar}, #{createTime}, #{updateTime})")
     void insert(User user);
+
+    /**
+     * 根据ID查找用户
+     *
+     * @param id 用户ID
+     * @return User类对象
+     */
+    @Select("SELECT * FROM `user` WHERE `id` = #{id}")
+    User getById(Integer id);
 }
