@@ -14,7 +14,7 @@ CREATE TABLE `user`
     `email`       VARCHAR(256) NOT NULL UNIQUE COMMENT '用户邮箱地址',
     `password`    VARCHAR(256) NOT NULL COMMENT '用户登录密码',
     `gender`      CHAR(1)      NOT NULL COMMENT '用户性别(M:男 F:女)',
-    `type`        TINYINT      DEFAULT 0 COMMENT '账号权限(0:普通 1:VIP)',
+    `type`        BOOLEAN      DEFAULT 0 COMMENT '账号权限(false:普通 true:VIP)',
     `avatar`      VARCHAR(256) DEFAULT NULL COMMENT '头像资源链接',
     `create_time` DATETIME     NOT NULL COMMENT '创建时间',
     `update_time` DATETIME     NOT NULL COMMENT '更新时间'
