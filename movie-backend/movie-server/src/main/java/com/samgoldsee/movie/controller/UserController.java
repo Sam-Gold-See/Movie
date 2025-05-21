@@ -1,0 +1,44 @@
+package com.samgoldsee.movie.controller;
+
+import com.samgoldsee.movie.dto.UserRegisterDTO;
+import com.samgoldsee.movie.result.Result;
+import com.samgoldsee.movie.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@Slf4j
+@Tag(name = "用户功能管理接口")
+@RequestMapping("/user/")
+public class UserController {
+
+    @Resource
+    private UserService userService;
+
+    /**
+     * 用户注册
+     *
+     * @param userRegisterDTO 用户DTO对象
+     */
+    @PostMapping("/register")
+    @Operation(summary = "用户注册")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            schema = @Schema(implementation = Result.class)
+    ))
+    public Result<String> register(@RequestBody UserRegisterDTO userRegisterDTO) {
+        log.info("用户注册:{}", userRegisterDTO);
+        userService.register(userRegisterDTO);
+        log.info("用户注册成功");
+        return Result.success();
+    }
+}
