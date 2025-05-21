@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @Tag(name = "用户功能管理接口")
-@RequestMapping("/user/")
+@RequestMapping("/user")
 public class UserController {
 
     @Resource
@@ -33,12 +34,12 @@ public class UserController {
     @PostMapping("/register")
     @Operation(summary = "用户注册")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = Result.class)
     ))
     public Result<String> register(@RequestBody UserRegisterDTO userRegisterDTO) {
         log.info("用户注册:{}", userRegisterDTO);
         userService.register(userRegisterDTO);
-        log.info("用户注册成功");
         return Result.success();
     }
 }
