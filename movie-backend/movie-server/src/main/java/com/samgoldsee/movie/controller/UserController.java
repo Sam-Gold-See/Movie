@@ -29,7 +29,7 @@ public class UserController {
     /**
      * 用户注册
      *
-     * @param userRegisterDTO 用户DTO对象
+     * @param userRegisterDTO 用户注册DTO对象
      */
     @PostMapping("/register")
     @Operation(summary = "用户注册")
