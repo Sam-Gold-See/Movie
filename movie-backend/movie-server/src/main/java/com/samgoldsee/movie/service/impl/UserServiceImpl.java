@@ -10,6 +10,7 @@ import com.samgoldsee.movie.exception.AccountException;
 import com.samgoldsee.movie.exception.VerificationException;
 import com.samgoldsee.movie.mapper.UserMapper;
 import com.samgoldsee.movie.service.UserService;
+import com.samgoldsee.movie.vo.UserVO;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -92,6 +93,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     /**
+     * 查询用户信息
+     *
+     * @param id 用户ID
+     */
+    @Override
+    public UserVO getProfile(Integer id) {
+        User userDB = userMapper.getById(id);
+        if (userDB == null)
+            // 账号不存在
+            throw new AccountException(MessageConstant.ACCOUNT_NOT_EXISTS);
+
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(userDB, userVO);
+
+        return userVO;
+    }
+
+    /**
      * 实现基于Spring Security的用户身份验证和控制
      *
      * @param email 用户邮箱地址
@@ -107,6 +126,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new UserSession(user);
     }
 
+    /**
+     * 校验验证码
+     *
+     * @param email 邮箱地址
+     */
     private void checkVerificationCodeStatus(String email) {
         String verificationCodeRedis = stringRedisTemplate.opsForValue().get(AccountConstant.REDIS_KEY + email);
 
