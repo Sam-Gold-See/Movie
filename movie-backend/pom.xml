@@ -187,7 +187,7 @@
                 <version>${springdoc}</version>
             </dependency>
 
-            <!-- Spring Security server -->
+            <!-- Spring Security server pojo -->
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
