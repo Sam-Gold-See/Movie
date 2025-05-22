@@ -24,7 +24,7 @@ public class SecurityConfig {
                                 "/css/**", "/img/**", "/js/**", "/scss/**", "/vendor/**",
 
                                 // 页面请求
-                                "/", "/toLogin", "/toRegister", "/email/sendCode", "/email/checkCode", "/user/register", "/user/login",
+                                "/toLogin", "/toRegister", "/toForgotPassword", "/email/sendCode", "/email/checkCode", "/user/register", "/user/login",
 
                                 // knife4j接口文档路径
                                 "/doc.html", "swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/v2/api-docs", "/v3/api-docs", "/v3/api-docs/**", "/swagger-ui/**")
