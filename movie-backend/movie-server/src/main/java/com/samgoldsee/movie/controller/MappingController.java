@@ -25,15 +25,43 @@ public class MappingController {
 
     @Operation(summary = "跳转注册页")
     @GetMapping("/toRegister")
-    public String toRegister(){
+    public String toRegister() {
         return "register";
     }
 
     @Operation(summary = "跳转忘记密码页")
     @GetMapping("/toForgotPassword")
-    public String toForgotPassword(){return "forgot-password";}
+    public String toForgotPassword() {
+        return "forgot-password";
+    }
 
     @Operation(summary = "跳转用户信息页")
     @GetMapping("/toProfile")
-    public String toProfile(){return "profile";}
+    public String toProfile() {
+        return "profile";
+    }
+
+    @Operation(summary = "跳转电影信息页")
+    @GetMapping("/toMovies")
+    public String toMovie() {
+        return "movies";
+    }
+
+    @Operation(summary = "跳转导演信息页")
+    @GetMapping("/toDirectors")
+    public String toDirectors() {
+        return "directors";
+    }
+
+    @Operation(summary = "跳转演员信息页")
+    @GetMapping("/toActors")
+    public String toActors() {
+        return "actors";
+    }
+
+    @Operation(summary = "跳转电影详情页")
+    @GetMapping("/toMovieDetail")
+    public String toMovieDetail() {
+        return "movie-detail";
+    }
 }
