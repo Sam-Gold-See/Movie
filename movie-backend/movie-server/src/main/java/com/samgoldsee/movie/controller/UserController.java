@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.controller;
 
+import com.samgoldsee.movie.dto.UserPasswordDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
 import com.samgoldsee.movie.result.Result;
 import com.samgoldsee.movie.service.UserService;
@@ -40,6 +41,23 @@ public class UserController {
     public Result<String> register(@RequestBody UserRegisterDTO userRegisterDTO) {
         log.info("用户注册:{}", userRegisterDTO);
         userService.register(userRegisterDTO);
+        return Result.success();
+    }
+
+    /**
+     * 用户修改密码
+     *
+     * @param userPasswordDTO 用户修改密码DTo
+     */
+    @PostMapping("/updatePassword")
+    @Operation(summary = "用户修改密码")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = Result.class)
+    ))
+    public Result<String> updatePassword(@RequestBody UserPasswordDTO userPasswordDTO) {
+        log.info("用户(email:{})修改密码:{}", userPasswordDTO.getEmail(), userPasswordDTO.getPassword());
+        userService.updatePassword(userPasswordDTO);
         return Result.success();
     }
 }
