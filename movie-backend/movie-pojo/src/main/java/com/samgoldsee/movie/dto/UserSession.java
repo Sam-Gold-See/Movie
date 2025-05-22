@@ -19,6 +19,8 @@ public class UserSession implements UserDetails {
 
     private final Boolean type;
 
+    private final String avatar;
+
     private final Collection<? extends GrantedAuthority> authorities;
 
     public UserSession(User user) {
@@ -26,6 +28,7 @@ public class UserSession implements UserDetails {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.type = user.getType();
+        this.avatar = user.getAvatar();
         this.authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
     }
 
