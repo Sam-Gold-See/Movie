@@ -13,8 +13,8 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(description = "用户登录DTO", title = "UserLoginDTO")
-public class UserLoginDTO implements Serializable {
+@Schema(description = "用户修改密码DTO", title = "UserPasswordDTO")
+public class UserPasswordDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
