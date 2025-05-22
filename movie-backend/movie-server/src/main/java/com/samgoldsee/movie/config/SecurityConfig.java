@@ -24,11 +24,10 @@ public class SecurityConfig {
                                 "/css/**", "/img/**", "/js/**", "/scss/**", "/vendor/**",
 
                                 // 页面请求
-                                "/", "/toLogin", "/toRegister", "/toForgotPassword", "/email/sendCode", "/email/checkCode", "/user/register", "/user/login", "/user/updatePassword",
-                                // 开发阶段临时放开首页 "/"
+                                "/toLogin", "/toRegister", "/toForgotPassword", "/email/sendCode", "/email/checkCode", "/user/register", "/user/login", "/user/updatePassword",
 
                                 // knife4j接口文档路径
-                                "/doc.html", "swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/v2/api-docs", "/v3/api-docs", "/v3/api-docs/**", "/swagger-ui/**")
+                                "/doc.html", "/swagger-ui.html", "/swagger-resources/**", "/webjars/**", "/v2/api-docs", "/v3/api-docs", "/v3/api-docs/**", "/swagger-ui/**")
 
                         .permitAll().anyRequest().authenticated())
 
