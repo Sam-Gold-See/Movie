@@ -2,6 +2,7 @@ package com.samgoldsee.movie.service.impl;
 
 import com.samgoldsee.movie.constant.AccountConstant;
 import com.samgoldsee.movie.constant.MessageConstant;
+import com.samgoldsee.movie.dto.UserPasswordDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
 import com.samgoldsee.movie.dto.UserSession;
 import com.samgoldsee.movie.entity.User;
@@ -65,6 +66,32 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     /**
+     * 用户修改密码
+     *
+     * @param userPasswordDTO 用户修改密码DTo
+     */
+    @Override
+    public void updatePassword(UserPasswordDTO userPasswordDTO) {
+        // 获取用户邮箱和验证码
+        String email = userPasswordDTO.getEmail();
+
+        // 校验验证码
+        checkVerificationCodeStatus(email);
+
+        User userDB = userMapper.getByEmail(email);
+        if (userDB == null)
+            // 账号不存在
+            throw new AccountException(MessageConstant.ACCOUNT_NOT_EXISTS);
+
+        User user = User.builder()
+                .id(userDB.getId())
+                .password(passwordEncoder.encode(userPasswordDTO.getPassword()))
+                .build();
+
+        userMapper.update(user);
+    }
+
+    /**
      * 实现基于Spring Security的用户身份验证和控制
      *
      * @param email 用户邮箱地址
@@ -75,7 +102,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         // 检查用户是否存在
         User user = userMapper.getByEmail(email);
         if (user == null)
-            throw new AccountException(MessageConstant.USER_NOT_EXISTS);
+            throw new AccountException(MessageConstant.ACCOUNT_NOT_EXISTS);
 
         return new UserSession(user);
     }
