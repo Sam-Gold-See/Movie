@@ -38,4 +38,12 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM `user` WHERE `id` = #{id}")
     User getById(Integer id);
+
+    /**
+     * 动态修改用户属性
+     *
+     * @param user 用户对象实体类
+     */
+    @AutoFill(operation = OperationType.UPDATE)
+    void update(User user);
 }
