@@ -10,5 +10,5 @@ public class MessageConstant {
     public static final String ACCOUNT_ALREADY_EXIST = "账号已存在";
     public static final String UNKNOWN_ERROR = "未知错误";
     public static final String PERMISSION_ERROR = "权限不足";
-    public static final String USER_NOT_EXISTS = "用户不存在";
+    public static final String ACCOUNT_NOT_EXISTS = "账号不存在";
 }
