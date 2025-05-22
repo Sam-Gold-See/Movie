@@ -72,9 +72,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        // 校验验证码
-        checkVerificationCodeStatus(email);
-
         // 检查用户是否存在
         User user = userMapper.getByEmail(email);
         if (user == null)
