@@ -32,4 +32,8 @@ public class MappingController {
     @Operation(summary = "跳转忘记密码页")
     @GetMapping("/toForgotPassword")
     public String toForgotPassword(){return "forgot-password";}
+
+    @Operation(summary = "跳转用户信息页")
+    @GetMapping("/toProfile")
+    public String toProfile(){return "profile";}
 }
