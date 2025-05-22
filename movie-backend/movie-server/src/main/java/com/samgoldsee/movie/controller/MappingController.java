@@ -28,4 +28,8 @@ public class MappingController {
     public String toRegister(){
         return "register";
     }
+
+    @Operation(summary = "跳转忘记密码页")
+    @GetMapping("/toForgotPassword")
+    public String toForgotPassword(){return "forgot-password";}
 }
