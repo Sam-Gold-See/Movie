@@ -2,8 +2,10 @@ package com.samgoldsee.movie.controller;
 
 import com.samgoldsee.movie.dto.UserPasswordDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
+import com.samgoldsee.movie.dto.UserSession;
 import com.samgoldsee.movie.result.Result;
 import com.samgoldsee.movie.service.UserService;
+import com.samgoldsee.movie.vo.UserVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,10 +14,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -59,5 +59,25 @@ public class UserController {
         log.info("用户(email:{})修改密码:{}", userPasswordDTO.getEmail(), userPasswordDTO.getPassword());
         userService.updatePassword(userPasswordDTO);
         return Result.success();
+    }
+
+    /**
+     * 查询用户信息
+     */
+    @GetMapping("/profile")
+    @Operation(summary = "用户查询信息")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = UserVOResult.class)
+    ))
+    public Result<UserVO> getProfile() {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserVO userVO = userService.getProfile(userSession.getId());
+        log.info("用户(id:{})查询信息:{}", userSession.getId(), userVO);
+        return Result.success(userVO);
+    }
+
+    @Schema(name = "Result<UserVO>", description = "包含UserVO的统一响应对象")
+    private static class UserVOResult extends Result<UserVO> {
     }
 }
