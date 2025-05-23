@@ -1,6 +1,7 @@
 package com.samgoldsee.movie.controller;
 
 import com.samgoldsee.movie.dto.UserPasswordDTO;
+import com.samgoldsee.movie.dto.UserProfileDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
 import com.samgoldsee.movie.dto.UserSession;
 import com.samgoldsee.movie.result.Result;
@@ -79,5 +80,23 @@ public class UserController {
 
     @Schema(name = "Result<UserVO>", description = "包含UserVO的统一响应对象")
     private static class UserVOResult extends Result<UserVO> {
+    }
+
+    /**
+     * 用户修改信息
+     *
+     * @param userProfileDTO 用户信息DTO
+     */
+    @PostMapping("/user/updateProfile")
+    @Operation(summary = "用户修改信息")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = Result.class)
+    ))
+    public Result<String> updateProfile(@RequestBody UserProfileDTO userProfileDTO) {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})修改信息:{}", userSession.getId(), userProfileDTO);
+        userService.updateProfile(userProfileDTO);
+        return Result.success();
     }
 }
