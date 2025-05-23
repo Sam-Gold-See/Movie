@@ -1,6 +1,7 @@
 package com.samgoldsee.movie.service;
 
 import com.samgoldsee.movie.dto.UserPasswordDTO;
+import com.samgoldsee.movie.dto.UserProfileDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
 import com.samgoldsee.movie.vo.UserVO;
 
@@ -26,4 +27,11 @@ public interface UserService {
      * @param id 用户ID
      */
     UserVO getProfile(Integer id);
+
+    /**
+     * 用户修改信息
+     *
+     * @param userProfileDTO 用户信息DTO
+     */
+    void updateProfile(UserProfileDTO userProfileDTO);
 }

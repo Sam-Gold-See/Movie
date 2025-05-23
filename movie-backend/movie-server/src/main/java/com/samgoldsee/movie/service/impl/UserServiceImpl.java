@@ -3,6 +3,7 @@ package com.samgoldsee.movie.service.impl;
 import com.samgoldsee.movie.constant.AccountConstant;
 import com.samgoldsee.movie.constant.MessageConstant;
 import com.samgoldsee.movie.dto.UserPasswordDTO;
+import com.samgoldsee.movie.dto.UserProfileDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
 import com.samgoldsee.movie.dto.UserSession;
 import com.samgoldsee.movie.entity.User;
@@ -14,6 +15,7 @@ import com.samgoldsee.movie.vo.UserVO;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -108,6 +110,22 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         BeanUtils.copyProperties(userDB, userVO);
 
         return userVO;
+    }
+
+    /**
+     * 用户修改信息
+     *
+     * @param userProfileDTO 用户信息DTO
+     */
+    @Override
+    public void updateProfile(UserProfileDTO userProfileDTO) {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User user = new User();
+        BeanUtils.copyProperties(userProfileDTO, user);
+        user.setId(userSession.getId());
+
+        userMapper.update(user);
     }
 
     /**
