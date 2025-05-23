@@ -43,8 +43,9 @@ public class SecurityConfig {
                 // 配置退出相关属性
                 .logout(logout -> logout
                         .logoutUrl("/toLogout")
-                        .logoutSuccessUrl("/toLogin"))
-
+                        .logoutSuccessUrl("/toLogin")
+                        .invalidateHttpSession(true) // 销毁会话
+                        .deleteCookies("JSESSIONID")) // 删除 Cookie
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
