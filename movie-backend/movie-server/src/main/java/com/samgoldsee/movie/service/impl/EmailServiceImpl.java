@@ -6,6 +6,7 @@ import com.samgoldsee.movie.dto.CheckCodeDTO;
 import com.samgoldsee.movie.exception.EmailException;
 import com.samgoldsee.movie.exception.VerificationException;
 import com.samgoldsee.movie.service.EmailService;
+import com.samgoldsee.movie.utils.CodeUtils;
 import com.samgoldsee.movie.utils.EmailUtils;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -40,7 +41,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void checkCode(CheckCodeDTO checkCodeDTO) {
-        String verificationCode = checkCodeDTO.getVerificationCode();
+        String verificationCode = CodeUtils.upperLetters(checkCodeDTO.getVerificationCode());
         String email = checkCodeDTO.getEmail();
 
         String verificationCodeRedis = stringRedisTemplate.opsForValue().get(AccountConstant.REDIS_KEY + email);
