@@ -23,14 +23,6 @@ public class UserProfileDTO implements Serializable {
     @Schema(description = "用户名", example = "SamGoldSee", requiredMode = Schema.RequiredMode.REQUIRED)
     private String name;
 
-    // 用户邮箱地址
-    @Schema(description = "邮箱地址", example = "user@example.com", requiredMode = Schema.RequiredMode.REQUIRED)
-    private String email;
-
-    // 用户登录密码
-    @Schema(description = "登录密码", example = "123456", requiredMode = Schema.RequiredMode.REQUIRED)
-    private String password;
-
     // 用户性别(M:男 F:女)
     @Schema(description = "性别(M:男 F:女)", example = "M", requiredMode = Schema.RequiredMode.REQUIRED)
     private Character gender;
