@@ -87,7 +87,7 @@ public class UserController {
      *
      * @param userProfileDTO 用户信息DTO
      */
-    @PostMapping("/user/updateProfile")
+    @PostMapping("/updateProfile")
     @Operation(summary = "用户修改信息")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
             mediaType = MediaType.APPLICATION_JSON_VALUE,
