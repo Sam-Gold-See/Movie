@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -99,4 +100,24 @@ public class UserController {
         userService.updateProfile(userProfileDTO);
         return Result.success();
     }
+
+    /**
+     * 用户上传头像
+     *
+     * @param file 上传文件
+     */
+    @PostMapping("/uploadAvatar")
+    @Operation(summary = "用户上传头像")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = Result.class)
+    ))
+    public Result<String> uploadAvatar(@RequestPart("avatar") MultipartFile file) {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})修改头像", userSession.getId());
+        userService.uploadAvatar(file);
+        return Result.success();
+    }
+
+    // TODO VIP充值功能
 }
