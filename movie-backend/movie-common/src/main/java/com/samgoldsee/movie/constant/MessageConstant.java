@@ -12,4 +12,5 @@ public class MessageConstant {
     public static final String PERMISSION_ERROR = "权限不足";
     public static final String ACCOUNT_NOT_EXISTS = "账号不存在";
     public static final String FILE_UPLOAD_ERROR = "文件上传失败";
+    public static final String ALIPAY_ERROR = "阿里支付异常";
 }
