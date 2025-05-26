@@ -118,6 +118,4 @@ public class UserController {
         userService.uploadAvatar(file);
         return Result.success();
     }
-
-    // TODO VIP充值功能
 }
