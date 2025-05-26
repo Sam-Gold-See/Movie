@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" type="image/png" th:href="@{img/logo-icon.ico}"/>
+    <title>奶龙影视-个人信息</title>
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick-theme.min.css}"/>
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css"/>
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/osahan.min.css}" rel="stylesheet"/>
+</head>
+<body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+            <div class="sidebar-brand-icon">
+                <img th:src="@{img/logo-icon.ico}" alt="">
+            </div>
+            <div class="sidebar-brand-text mx-3"><img th:src="@{img/logo.png}" alt=""></div>
+        </a>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/toMovies}">
+                <i class="fas fa-fw fa-film"></i>
+                <span>电影</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toDirectors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>导演</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toActors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>演员</span></a>
+        </li>
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-dark topbar mb-4 pl-0 static-top shadow">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <!-- Topbar Search -->
+                <form class="d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-white border-0 small"
+                               placeholder="Search for Movies, Events, Plays, Sports and Activities..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn bg-white" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="user-name" class="mr-2 d-none d-lg-inline text-gray-600 small">Loading...</span>
+                            <img id="user-avatar" class="img-profile rounded-circle" th:src="@{img/default.png}"
+                                 alt="头像">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" th:href="@{/toProfile}">
+                                <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                                账号设置
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                退出账号
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <section class="pt-5 pb-5 bg-gradient-primary text-white pl-4 pr-4 inner-profile mb-4">
+                    <div class="row gutter-2 gutter-md-4 align-items-end">
+                        <div class="col-md-6 text-center text-md-left">
+                            <h1 class="mb-1 user-name-show"></h1>
+                            <span class="text-muted text-gray-500"><i
+                                    class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i><span
+                                    class="user-gender-show"></span></span>
+                        </div>
+                        <div class="col-md-6 text-center text-md-right">
+                            <a href="#" data-toggle="modal" data-target="#logoutModal"
+                               class="btn btn btn-light">退出账号</a>
+                        </div>
+                    </div>
+                </section>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="bg-white p-3 widget shadow rounded mb-4">
+                            <div class="nav nav-pills flex-column lavalamp" id="sidebar-1" role="tablist">
+                                <a class="nav-link active" data-toggle="tab" href="#sidebar-1-1" role="tab"
+                                   aria-controls="sidebar-1" aria-selected="true"><i
+                                        class="fas fa-user-circle fa-sm fa-fw mr-2 text-gray-400"></i>奶龙资料</a>
+                                <a class="nav-link" data-toggle="tab" href="#sidebar-1-2" role="tab"
+                                   aria-controls="sidebar-1-2" aria-selected="false"><i
+                                        class="fas fa-heart fa-sm fa-fw mr-2 text-gray-400"></i>爆爆金币</a>
+                                <a class="nav-link" data-toggle="tab" href="#sidebar-1-4" role="tab"
+                                   aria-controls="sidebar-1-4" aria-selected="false"><i
+                                        class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>账号安全</a>
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal"><i
+                                        class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>退出账号</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9">
+                        <div class="bg-white p-3 widget shadow rounded mb-4">
+                            <div class="tab-content" id="myTabContent">
+                                <!-- 用户资料表单 -->
+                                <div class="tab-pane fade show active" id="sidebar-1-1" role="tabpanel"
+                                     aria-labelledby="sidebar-1-1">
+                                    <!-- 页面标题 -->
+                                    <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                                        <h1 class="h5 mb-0 text-gray-900">奶龙资料</h1>
+                                    </div>
+
+                                    <div class="row gutter-1">
+                                        <!-- 用户名 -->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="user-name">奶龙名</label>
+                                                <input id="user-name-input" type="text" class="form-control"
+                                                       placeholder="请输入用户名">
+                                                <small class="text-muted">最多32个字符</small>
+                                            </div>
+                                        </div>
+
+                                        <!-- 性别选择 -->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="user-gender">性别</label>
+                                                <select id="user-gender" class="form-control">
+                                                    <option value="M">雄奶龙</option>
+                                                    <option value="F">雌奶龙</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- 账号权限（VIP） -->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>账号权限</label>
+                                                <div class="form-control-plaintext" id="user-type-label">
+                                                    <!-- 动态显示内容 -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 头像上传 -->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="user-avatar">头像</label>
+                                                <input id="user-avatar-input" type="file" class="form-control-file">
+                                                <small class="form-text text-muted">请上传图片文件（如 JPG/PNG）。</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 提交按钮 -->
+                                    <div class="row">
+                                        <div class="col">
+                                            <button id="save-button" class="btn btn-primary">保存修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="sidebar-1-2" role="tabpanel"
+                                     aria-labelledby="sidebar-1-2">
+                                    <div class="text-center mb-4">
+                                        <h1 class="h4 text-gray-900">支付宝沙箱支付</h1>
+                                        <p class="mb-4">请输入支付金额和订单描述，进行沙箱支付测试。</p>
+                                    </div>
+
+                                    <form class="user" id="alipayForm" onsubmit="return false;">
+                                        <!-- 支付金额 -->
+                                        <div class="form-group">
+                                            <input type="number" class="form-control form-control-user"
+                                                   id="paymentAmount"
+                                                   placeholder="支付金额（元）" required min="0.01" step="0.01">
+                                            <small class="form-text text-muted">金额需大于 0.01 元</small>
+                                        </div>
+
+                                        <!-- 订单描述 -->
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                   id="orderDescription"
+                                                   placeholder="订单描述（如：打赏支持）" required maxlength="100">
+                                            <small class="form-text text-muted">最多输入 100 个字符</small>
+                                        </div>
+
+                                        <!-- 支付按钮 -->
+                                        <button type="submit" class="btn btn-success btn-user btn-block" id="payButton">
+                                            去支付
+                                        </button>
+                                    </form>
+
+                                    <!-- 支付结果提示 -->
+                                    <div id="paymentResult" class="mt-3 text-center" style="display: none;"></div>
+
+                                    <hr>
+
+                                    <div class="text-center">
+                                        <a class="small" href="#">返回首页</a>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="sidebar-1-4" role="tabpanel"
+                                     aria-labelledby="sidebar-1-4">
+                                    <div class="text-center mb-4">
+                                        <h1 class="h4 text-gray-900">修改密码</h1>
+                                        <p class="mb-4">请输入邮箱验证码并设置新密码哦～</p>
+                                    </div>
+
+                                    <form class="user" id="changePasswordForm" onsubmit="return false;">
+                                        <!-- 验证码 -->
+                                        <div class="form-group d-flex align-items-center">
+                                            <input type="text" class="form-control form-control-user mr-2"
+                                                   id="verificationCode" placeholder="输入验证码..." required>
+                                            <button type="button" class="btn btn-secondary" id="sendCodeBtn">
+                                                发送验证码
+                                            </button>
+                                        </div>
+
+                                        <!-- 新密码 -->
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                   id="newPassword" placeholder="请输入新密码..." required>
+                                        </div>
+
+                                        <!-- 确认密码 -->
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                   id="confirmPassword" placeholder="请再次输入新密码..." required>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block"
+                                                id="savePasswordBtn">保存新密码
+                                        </button>
+                                    </form>
+
+                                    <hr>
+
+                                    <div class="text-center">
+                                        <a class="small" th:href="@{/}">返回首页</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; 2025 | SamGoldSee</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">真的要退出小奶龙影视网站吗？</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                    <a class="btn btn-primary" th:href="@{/toLogout}">退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+<!-- Slick Carousel -->
+<script th:src="@{vendor/slick/slick.min.js}"></script>
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/osahan.min.js}"></script>
+<script>
+    // 全局变量存储邮箱
+    let currentUserEmail = "";
+    let currentUserAvatar = "";
+    let selectedAvatarFile = null; // 新增：用户选择的头像文件
+
+    $(document).ready(function () {
+        // 获取用户信息并存储邮箱（保持不变）
+        $.ajax({
+            url: "/user/profile",
+            method: "GET",
+            success: function (res) {
+                if (res.code === 1 && res.data) {
+                    // 原有用户信息展示逻辑
+                    $("#user-name").text(res.data.name || "未命名用户");
+                    $("#user-avatar").attr("src", res.data.avatar || "img/default.png");
+
+                    $(".user-name-show").text(res.data.name || "未命名用户");
+                    let genderMap = {
+                        'M': "雄奶龙",
+                        'F': "雌奶龙"
+                    };
+                    let displayGender = genderMap[res.data.gender] || "武装直升机";
+                    $('.user-gender-show').text(displayGender);
+
+                    $('#user-name-input').val(res.data.name);
+                    $('#user-gender').val(res.data.gender);
+                    const isVip = res.data.type;
+                    const label = isVip ? 'VIP' : '普通用户';
+                    if (isVip)
+                        $('#user-type-label').text(label).addClass('text-danger');
+                    else
+                        $('#user-type-label').text(label).removeClass('text-danger');
+
+                    // 存储邮箱为全局变量
+                    currentUserEmail = res.data.email;
+                    currentUserAvatar = res.data.avatar;
+                    console.log("邮箱已存储为全局变量:", currentUserEmail); // 调试用
+                } else {
+                    console.error("获取用户信息失败:", res.msg);
+                }
+            },
+            error: function (err) {
+                console.error("请求用户信息出错:", err);
+            }
+        });
+
+        $("#user-avatar-input").on("change", function () {
+            const file = this.files[0];
+            if (!file) return;
+
+            selectedAvatarFile = file;
+        });
+
+        $("#save-button").click(function () {
+            const name = $("#user-name-input").val().trim();
+            const gender = $("#user-gender").val();
+
+            const submitProfile = (avatarUrl) => {
+                const userProfileDTO = {
+                    name: name,
+                    gender: gender,
+                    avatar: avatarUrl || currentUserAvatar
+                };
+
+                $.ajax({
+                    url: "/user/updateProfile",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(userProfileDTO),
+                    success: function (res) {
+                        if (res.code === 1) {
+                            alert("保存成功！");
+                            location.reload();
+                        } else {
+                            alert("保存失败: " + (res.msg || "未知错误"));
+                        }
+                    },
+                    error: function (err) {
+                        console.error("请求失败:", err);
+                        alert("请求失败，请稍后再试");
+                    }
+                });
+            };
+
+            // 如果用户有更换头像，则先上传头像，再提交资料
+            if (selectedAvatarFile) {
+                const formData = new FormData();
+                formData.append("avatar", selectedAvatarFile);
+
+                $.ajax({
+                    url: "/user/uploadAvatar",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        if (res.code === 1) {
+                            currentUserAvatar = res.data;
+                            submitProfile(currentUserAvatar);
+                        } else {
+                            alert("头像上传失败: " + (res.msg || "未知错误"));
+                        }
+                    },
+                    error: function (err) {
+                        console.error("头像上传失败:", err);
+                        alert("头像上传失败，请稍后再试");
+                    }
+                });
+            } else {
+                // 没有选择新头像，直接提交资料
+                submitProfile(currentUserAvatar);
+            }
+        });
+
+        // ✅ 修改后的发送验证码逻辑（使用 fetch + JSON）
+        $('#sendCodeBtn').click(function () {
+            const email = currentUserEmail;
+            if (!email) {
+                alert('邮箱未加载，请刷新页面重试');
+                return;
+            }
+
+            fetch(`/email/sendCode?email=${encodeURIComponent(email)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.code === 1) {
+                        alert('验证码已发送，请查收邮箱');
+                        // 倒计时逻辑
+                        const btn = document.getElementById('sendCodeBtn');
+                        let countdown = 60;
+                        btn.disabled = true;
+                        btn.textContent = `${countdown}s`;
+                        const timer = setInterval(() => {
+                            countdown--;
+                            btn.textContent = `${countdown}s`;
+                            if (countdown <= 0) {
+                                clearInterval(timer);
+                                btn.disabled = false;
+                                btn.textContent = '发送验证码';
+                            }
+                        }, 1000);
+                    } else {
+                        alert(`发送验证码失败: ${data.msg}`);
+                    }
+                })
+                .catch(() => alert('网络错误，请稍后再试'));
+        });
+
+        $('#changePasswordForm').submit(function (e) {
+            e.preventDefault();
+
+            const code = $('#verificationCode').val();
+            const newPassword = $('#newPassword').val();
+            const confirmPassword = $('#confirmPassword').val();
+
+            if (newPassword !== confirmPassword) {
+                alert('两次密码输入不一致');
+                return;
+            }
+
+            // 验证验证码
+            fetch('/email/checkCode', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: currentUserEmail,
+                    verificationCode: code
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.code === 1) {
+                        // 修改密码
+                        fetch('/user/updatePassword', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                email: currentUserEmail,
+                                password: newPassword
+                            })
+                        })
+                            .then(res => res.json())
+                            .then(updateData => {
+                                if (updateData.code === 1) {
+                                    alert('密码修改成功');
+                                    // ✅ 触发登出并跳转
+                                    fetch('/toLogout', {method: 'GET'})
+                                        .then(() => {
+                                            window.location.href = '/toLogin';
+                                        })
+                                        .catch(() => {
+                                            alert('登出失败，请手动刷新页面并重新登录');
+                                        });
+                                } else {
+                                    alert(`密码修改失败: ${updateData.msg}`);
+                                }
+                            })
+                            .catch(() => alert('网络错误，请稍后再试'));
+                    } else {
+                        alert(`验证码错误或已过期: ${data.msg}`);
+                    }
+                })
+                .catch(() => alert('网络错误，请稍后再试'));
+        });
+    });
+
+    document.getElementById('payButton').addEventListener('click', function () {
+        const amount = document.getElementById('paymentAmount').value;
+        const desc = document.getElementById('orderDescription').value;
+
+        if (!amount || amount <= 0) {
+            alert("请输入有效的支付金额！");
+            return;
+        }
+
+        if (!desc || desc.trim() === '') {
+            alert("请输入订单描述！");
+            return;
+        }
+
+        // 生成唯一订单号
+        const traceNo = 'TRADE_' + Date.now();
+
+        // 拼接支付链接并跳转
+        const url = `/alipay/pay?traceNo=${encodeURIComponent(traceNo)}&totalAmount=${encodeURIComponent(amount)}&subject=${encodeURIComponent(desc)}`;
+        window.open(url, '_blank');
+    });
+</script>
+</body>
+</html>
