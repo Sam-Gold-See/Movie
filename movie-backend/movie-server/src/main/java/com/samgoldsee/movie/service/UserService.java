@@ -4,6 +4,7 @@ import com.samgoldsee.movie.dto.UserPasswordDTO;
 import com.samgoldsee.movie.dto.UserProfileDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
 import com.samgoldsee.movie.vo.UserVO;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
@@ -34,4 +35,11 @@ public interface UserService {
      * @param userProfileDTO 用户信息DTO
      */
     void updateProfile(UserProfileDTO userProfileDTO);
+
+    /**
+     * 用户上传头像
+     *
+     * @param file 上传文件
+     */
+    void uploadAvatar(MultipartFile file);
 }

@@ -2,6 +2,7 @@ package com.samgoldsee.movie.service.impl;
 
 import com.samgoldsee.movie.constant.AccountConstant;
 import com.samgoldsee.movie.constant.MessageConstant;
+import com.samgoldsee.movie.constant.OSSConstant;
 import com.samgoldsee.movie.dto.UserPasswordDTO;
 import com.samgoldsee.movie.dto.UserProfileDTO;
 import com.samgoldsee.movie.dto.UserRegisterDTO;
@@ -10,6 +11,7 @@ import com.samgoldsee.movie.entity.User;
 import com.samgoldsee.movie.exception.AccountException;
 import com.samgoldsee.movie.exception.VerificationException;
 import com.samgoldsee.movie.mapper.UserMapper;
+import com.samgoldsee.movie.service.FileService;
 import com.samgoldsee.movie.service.UserService;
 import com.samgoldsee.movie.vo.UserVO;
 import jakarta.annotation.Resource;
@@ -21,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Objects;
 
@@ -35,6 +38,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
+
+    @Resource
+    private FileService fileService;
 
     /**
      * 用户注册
@@ -124,6 +130,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = new User();
         BeanUtils.copyProperties(userProfileDTO, user);
         user.setId(userSession.getId());
+
+        userMapper.update(user);
+    }
+
+    /**
+     * 用户上传头像
+     *
+     * @param file 上传文件
+     */
+    @Override
+    public void uploadAvatar(MultipartFile file) {
+        String avatar = fileService.upload(file, OSSConstant.USER_PATH);
+
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = User.builder()
+                .id(userSession.getId())
+                .avatar(avatar)
+                .build();
 
         userMapper.update(user);
     }
