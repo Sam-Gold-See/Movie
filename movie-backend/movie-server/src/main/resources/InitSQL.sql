@@ -88,6 +88,20 @@ CREATE TABLE `movie-movie_type`
     FOREIGN KEY (`type_id`) REFERENCES `movie_type` (`id`)
 ) COMMENT '电影-类型关联表';
 
+CREATE TABLE `ali_pay_order`
+(
+    `id`              LONG AUTO_INCREMENT PRIMARY KEY COMMENT '订单id',
+    `trace_no`        VARCHAR(64)    NOT NULL UNIQUE COMMENT '商户订单号',
+    `user_id`         INT            NOT NULL COMMENT '用户ID',
+    `total_amount`    DECIMAL(10, 2) NOT NULL COMMENT '支付金额',
+    `subject`         VARCHAR(100) COMMENT '订单主题',
+    `ali_pay_trade_no` VARCHAR(64)    NOT NULL UNIQUE COMMENT '支付宝订单号',
+    `status`          BOOLEAN DEFAULT 0 COMMENT '订单状态(0:未完成 1:完成)',
+    `create_time`     DATETIME       NOT NULL COMMENT '创建时间',
+    `update_time`     DATETIME       NOT NULL COMMENT '更新时间',
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) COMMENT '支付记录';
+
 CREATE TABLE `user_like`
 (
     `id`          INT AUTO_INCREMENT PRIMARY KEY COMMENT '点赞id',
