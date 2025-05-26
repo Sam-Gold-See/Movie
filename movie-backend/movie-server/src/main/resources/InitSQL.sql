@@ -54,12 +54,10 @@ CREATE TABLE `movie`
     `name`         VARCHAR(256) NOT NULL COMMENT '电影名',
     `description`  TEXT         NOT NULL COMMENT '简介',
     `zone_id`      INT          NOT NULL COMMENT '电影地区id',
-    `view`         INT          NOT NULL COMMENT '浏览数',
+    `view`         LONG         NOT NULL COMMENT '浏览数',
     `poster`       VARCHAR(256) DEFAULT NULL COMMENT '海报链接',
     `permission`   TINYINT      DEFAULT 0 COMMENT '观看权限(0:普通 1:VIP)',
     `release_date` DATE         NOT NULL COMMENT '上线日期',
-    `create_time`  DATETIME     NOT NULL COMMENT '创建时间',
-    `update_time`  DATETIME     NOT NULL COMMENT '更新时间',
     FOREIGN KEY (`zone_id`) REFERENCES `movie_zone` (`id`)
 ) COMMENT '电影';
 
