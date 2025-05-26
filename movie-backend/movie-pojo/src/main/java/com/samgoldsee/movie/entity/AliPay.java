@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "支付订单对象", title = "AliPay")
 public class AliPay implements Serializable {
 
     @Serial
