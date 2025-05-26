@@ -190,6 +190,13 @@
             <artifactId>aliyun-sdk-oss</artifactId>
         </dependency>
 
+        <!-- 阿里支付功能 -->
+
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-easysdk</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

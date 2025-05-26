@@ -41,6 +41,7 @@
         <springdoc>2.7.0</springdoc>
         <security>3.4.5</security>
         <aliyun-oss>3.10.2</aliyun-oss>
+        <alipay>2.2.3</alipay>
     </properties>
 
     <dependencyManagement>
@@ -202,6 +203,14 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-oss}</version>
+            </dependency>
+
+            <!-- 支付宝沙箱支付 server -->
+
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-easysdk</artifactId>
+                <version>${alipay}</version>
             </dependency>
 
         </dependencies>
