@@ -41,7 +41,8 @@
         <springdoc>2.7.0</springdoc>
         <security>3.4.5</security>
         <aliyun-oss>3.10.2</aliyun-oss>
-        <alipay>2.2.3</alipay>
+        <alipay>4.9.28.ALL</alipay>
+        <alipay-easy>2.2.3</alipay-easy>
     </properties>
 
     <dependencyManagement>
@@ -209,8 +210,14 @@
 
             <dependency>
                 <groupId>com.alipay.sdk</groupId>
-                <artifactId>alipay-easysdk</artifactId>
+                <artifactId>alipay-sdk-java</artifactId>
                 <version>${alipay}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-easysdk</artifactId>
+                <version>${alipay-easy}</version>
             </dependency>
 
         </dependencies>

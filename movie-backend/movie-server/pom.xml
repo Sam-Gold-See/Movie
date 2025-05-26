@@ -194,6 +194,11 @@
 
         <dependency>
             <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-easysdk</artifactId>
         </dependency>
 
