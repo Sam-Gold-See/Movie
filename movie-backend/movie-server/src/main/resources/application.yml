@@ -54,3 +54,13 @@ aliyun:
     access-key-id: ${movie.aliyun.key-id}
     access-key-secret: ${movie.aliyun.key-secret}
     bucket-name: ${movie.aliyun.bucket-name}
+
+alipay:
+  app_id: ${movie.alipay.appId}
+  merchant_private_key: ${movie.alipay.merchant_private_key}
+  alipay_public_key: ${movie.alipay.alipay_public_key}
+  notify_url: ${movie.alipay.notify_url}
+  return-url: ${movie.alipay.return_url}
+  sign_type: RSA2
+  charset: utf-8
+  gatewayUrl: https://openapi-sandbox.dl.alipaydev.com/gateway.do
