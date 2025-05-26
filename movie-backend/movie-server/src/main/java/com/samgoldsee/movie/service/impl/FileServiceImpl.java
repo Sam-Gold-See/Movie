@@ -52,7 +52,7 @@ public class FileServiceImpl implements FileService {
 
         // 获取用户名
         UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userSession.getUsername();
+        String username = userSession.getUsername().split("@")[0];
 
         // 处理非法字符
         String safeUsername = username.replaceAll("[^a-zA-Z0-9_-]", "_");
