@@ -5,3 +5,5 @@
 /movie-backend/movie-server/target
 /movie-backend/movie-common/target
 /movie-backend/movie-pojo/target
+
+/movie-backend/movie-server/src/main/resources/application-dev.yml

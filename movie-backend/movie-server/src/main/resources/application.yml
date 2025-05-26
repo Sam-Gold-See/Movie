@@ -47,3 +47,10 @@ logging:
           mapper: debug
           service: info
           controller: info
+
+aliyun:
+  oss:
+    endpoint: ${movie.aliyun.endpoint}
+    access-key-id: ${movie.aliyun.key-id}
+    access-key-secret: ${movie.aliyun.key-secret}
+    bucket-name: ${movie.aliyun.bucket-name}
