@@ -4,6 +4,7 @@ import com.samgoldsee.movie.dto.UserSession;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.result.Result;
 import com.samgoldsee.movie.service.MovieService;
+import com.samgoldsee.movie.vo.MovieDetailVO;
 import com.samgoldsee.movie.vo.MovieVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -57,17 +58,17 @@ public class MovieController {
     @Operation(summary = "获取具体电影信息")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
             mediaType = MediaType.APPLICATION_JSON_VALUE,
-            schema = @Schema(implementation = MovieVOResult.class)
+            schema = @Schema(implementation = MovieDetailVOResult.class)
     ))
-    public Result<MovieVO> getDetail(@RequestParam(name = "id") Integer id) {
+    public Result<MovieDetailVO> getDetail(@RequestParam(name = "id") Integer id) {
         UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("用户(id:{})查询电影(id:{})详情", userSession.getId(), id);
-        MovieVO movieVO = movieService.getById(id);
-        return Result.success(movieVO);
+        MovieDetailVO movieDetailVO = movieService.getDetailById(id);
+        return Result.success(movieDetailVO);
     }
 
-    @Schema(name = "Result<MovieVO>", description = "包含MovieVO的统一响应对象")
-    private static class MovieVOResult extends Result<MovieVO> {
+    @Schema(name = "Result<MovieVO>", description = "包含MovieDetailVO的统一响应对象")
+    private static class MovieDetailVOResult extends Result<MovieDetailVO> {
     }
 
     /**
