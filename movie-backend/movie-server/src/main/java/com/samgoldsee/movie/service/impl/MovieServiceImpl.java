@@ -1,10 +1,12 @@
 package com.samgoldsee.movie.service.impl;
 
+import com.samgoldsee.movie.entity.Movie;
 import com.samgoldsee.movie.mapper.MovieMapper;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.service.MovieService;
 import com.samgoldsee.movie.vo.MovieVO;
 import jakarta.annotation.Resource;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -32,5 +34,20 @@ public class MovieServiceImpl implements MovieService {
         pageResult.setRecords(res);
 
         return pageResult;
+    }
+
+    /**
+     * 获取电影详情
+     *
+     * @param id 电影ID
+     */
+    @Override
+    public MovieVO getById(Integer id) {
+        Movie movieDB = movieMapper.selectById(id);
+
+        MovieVO movieVO = new MovieVO();
+        BeanUtils.copyProperties(movieDB, movieVO);
+
+        return movieVO;
     }
 }

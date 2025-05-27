@@ -9,4 +9,11 @@ public interface MovieService {
      * 获取随机推荐电影
      */
     PageResult<MovieVO> getRec();
+
+    /**
+     * 获取电影详情
+     *
+     * @param id 电影ID
+     */
+    MovieVO getById(Integer id);
 }
