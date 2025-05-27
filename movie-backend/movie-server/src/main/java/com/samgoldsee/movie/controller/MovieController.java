@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,5 +46,27 @@ public class MovieController {
 
     @Schema(name = "Result<PageResult<MovieVO>>", description = "包含MovieVO的多数据响应对象")
     private static class MovieVOPageResultResult extends Result<PageResult<MovieVO>> {
+    }
+
+    /**
+     * 获取具体电影信息
+     *
+     * @param id 电影ID
+     */
+    @GetMapping("/detail")
+    @Operation(summary = "获取具体电影信息")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = MovieVOResult.class)
+    ))
+    public Result<MovieVO> getDetail(@RequestParam(name = "id") Integer id) {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})查询电影(id:{})详情", userSession.getId(), id);
+        MovieVO movieVO = movieService.getById(id);
+        return Result.success(movieVO);
+    }
+
+    @Schema(name = "Result<MovieVO>", description = "包含MovieVO的统一响应对象")
+    private static class MovieVOResult extends Result<MovieVO> {
     }
 }
