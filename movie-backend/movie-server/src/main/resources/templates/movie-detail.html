@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" th:href="@{img/logo-icon.ico}">
+    <title>奶龙影视-首页</title>
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick-theme.min.css}"/>
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/osahan.min.css}" rel="stylesheet">
+</head>
+<body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+            <div class="sidebar-brand-icon">
+                <img th:src="@{img/logo-icon.ico}" alt="">
+            </div>
+            <div class="sidebar-brand-text mx-3"><img th:src="@{img/logo.png}" alt=""></div>
+        </a>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/toMovies}">
+                <i class="fas fa-fw fa-film"></i>
+                <span>电影</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toDirectors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>导演</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toActors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>演员</span></a>
+        </li>
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-dark topbar mb-4 pl-0 static-top shadow">
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="user-name" class="mr-2 d-none d-lg-inline text-gray-600 small">Loading...</span>
+                            <img id="user-avatar" class="img-profile rounded-circle" th:src="@{img/default.png}"
+                                 alt="头像">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" th:href="@{/toProfile}">
+                                <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                                账号设置
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                退出账号
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12">
+                        <div id="movie-detail" class="bg-white p-3 widget shadow rounded mb-4">
+                            <!-- 动态内容插入在这里 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; 2025 | SamGoldSee</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">真的要退出小奶龙影视网站吗？</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                <a class="btn btn-primary" th:href="@{/toLogout}">退出</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+<!-- Slick Carousel -->
+<script th:src="@{vendor/slick/slick.min.js}"></script>
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/osahan.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/user/profile",
+            method: "GET",
+            success: function (res) {
+                if (res.code === 1 && res.data) {
+                    $("#user-name").text(res.data.name || "未命名用户");
+                    $("#user-avatar").attr("src", res.data.avatar || "img/default.png");
+                } else {
+                    console.error("获取用户信息失败:", res.msg);
+                }
+            },
+            error: function (err) {
+                console.error("请求用户信息出错:", err);
+            }
+        });
+    });
+
+    // 获取 URL 中的参数
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    function renderMovieDetail(movie) {
+        const releaseDate = new Date(movie.releaseDate);
+        const year = releaseDate.getFullYear();
+        const fullDate = releaseDate.toLocaleDateString();
+
+        // 渲染内容
+        document.getElementById("movie-detail").innerHTML = `
+<div class="container-fluid mt-4">
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-10 col-md-12">
+      <div class="row align-items-center bg-white shadow rounded p-4">
+        <!-- 左侧图片 -->
+        <div class="col-md-4 mb-3 mb-md-0">
+          <img src="${movie.poster}" class="img-fluid rounded shadow-sm" alt="${movie.name}">
+        </div>
+
+        <!-- 右侧文本信息 -->
+        <div class="col-md-8">
+          <h2 class="text-gray-900 font-weight-bold mb-3 display-6">${movie.name}</h2>
+
+          <p><strong class="text-gray-800">上映时间：</strong>${year}年 (${fullDate})</p>
+
+          <p>
+            <strong class="text-gray-800">观看权限：</strong>
+            <span class="${movie.permission ? 'text-danger font-weight-bold' : 'text-muted'}">
+              ${movie.permission ? 'VIP专享' : '免费观看'}
+            </span>
+          </p>
+
+          <p><strong class="text-gray-800">播放量：</strong>${(movie.view / 10000).toFixed(1)} 万次</p>
+
+          <p><strong class="text-gray-800">简介：</strong>${movie.description}</p>
+
+          <p>
+            <strong class="text-gray-800">导演：</strong>
+            <a href="/toDirectors?id=${movie.directorId}" class="text-primary">
+              ${movie.directorName}
+            </a>
+          </p>
+
+          <p>
+            <strong class="text-gray-800">演员：</strong>
+            <a href="/toActors?id=${movie.actorId}" class="text-primary">
+              ${movie.actorName}
+            </a>
+          </p>
+
+          <div class="mt-4">
+            <button id="playButton" class="btn btn-danger btn-lg">
+              <i class="fas fa-play mr-2"></i> 播放
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+        // 绑定播放按钮事件
+        document.getElementById('playButton').addEventListener('click', () => {
+            fetch(`/movie/play?id=${movie.id}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.code === 1) {
+                        alert('可以播放！请享受电影 🎬');
+                    } else {
+                        alert(res.msg || '播放失败');
+                    }
+                })
+                .catch(err => {
+                    console.error('播放请求异常：', err);
+                    alert('请求失败，请稍后重试');
+                });
+        });
+    }
+
+    // 页面加载后发送请求
+    document.addEventListener("DOMContentLoaded", () => {
+        const id = getQueryParam("id");
+        if (!id) {
+            alert("未提供电影ID");
+            return;
+        }
+
+        fetch(`/movie/detail?id=${id}`)
+            .then(response => response.json())
+            .then(res => {
+                if (res.code === 1 && res.data) {
+                    renderMovieDetail(res.data);
+                } else {
+                    alert("获取电影详情失败");
+                }
+            })
+            .catch(err => {
+                console.error("请求出错", err);
+                alert("网络错误，无法加载电影详情");
+            });
+    });
+</script>
+</body>
+</html>
