@@ -20,7 +20,7 @@ public class AliPayDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // 订单编号
-    private String traceNo;
+    private String tradeNo;
 
     // 商品金额
     private Double totalAmount;
@@ -29,5 +29,5 @@ public class AliPayDTO implements Serializable {
     private String subject;
 
     // 订单追踪号
-    private String alipayTraceNo;
+    private String alipayTradeNo;
 }

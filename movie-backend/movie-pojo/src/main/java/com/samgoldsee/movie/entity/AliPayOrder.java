@@ -23,7 +23,7 @@ public class AliPayOrder implements Serializable {
     private Long id;
 
     // 商户订单号
-    private String traceNo;
+    private String tradeNo;
 
     // 用户ID
     private Integer userId;
