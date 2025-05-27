@@ -69,4 +69,22 @@ public class MovieController {
     @Schema(name = "Result<MovieVO>", description = "包含MovieVO的统一响应对象")
     private static class MovieVOResult extends Result<MovieVO> {
     }
+
+    /**
+     * 播放电影
+     *
+     * @param id 电影ID
+     */
+    @GetMapping("/play")
+    @Operation(summary = "电影")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = Result.class)
+    ))
+    public Result<String> play(Integer id) {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})播放电影(id:{})", userSession.getId(), id);
+        movieService.play(userSession.getId(), id);
+        return Result.success();
+    }
 }
