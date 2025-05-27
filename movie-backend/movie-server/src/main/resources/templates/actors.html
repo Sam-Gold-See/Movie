@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" th:href="@{img/logo-icon.ico}">
+    <title>奶龙影视-演员</title>
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick-theme.min.css}"/>
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/osahan.min.css}" rel="stylesheet">
+</head>
+<body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+            <div class="sidebar-brand-icon">
+                <img th:src="@{img/logo-icon.ico}" alt="">
+            </div>
+            <div class="sidebar-brand-text mx-3"><img th:src="@{img/logo.png}" alt=""></div>
+        </a>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/toMovies}">
+                <i class="fas fa-fw fa-film"></i>
+                <span>电影</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toDirectors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>导演</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toActors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>演员</span></a>
+        </li>
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-dark topbar mb-4 pl-0 static-top shadow">
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="user-name" class="mr-2 d-none d-lg-inline text-gray-600 small">Loading...</span>
+                            <img id="user-avatar" class="img-profile rounded-circle" th:src="@{img/default.png}"
+                                 alt="头像">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" th:href="@{/toProfile}">
+                                <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                                账号设置
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                退出账号
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-3">
+                    <h1 class="h5 mb-0 text-gray-900">演员</h1>
+                </div>
+                <!-- Content Row -->
+                <div class="row" id="actorContainer">
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="row">
+                            <div th:each="actor : ${actorList}" class="col-xl-4 col-md-6 mb-4">
+                                <div class="card p-card shadow border-0">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-4">
+                                            <img th:src="${actor.avatar}" class="card-img" th:alt="${actor.name}">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-gray-900" th:text="${actor.name}">
+                                                    演员名字</h5>
+                                                <p class="card-text" th:text="${actor.description}">演员介绍</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; 2025 | SamGoldSee</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">真的要退出小奶龙影视网站吗？</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                <a class="btn btn-primary" th:href="@{/toLogout}">退出</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+<!-- Slick Carousel -->
+<script th:src="@{vendor/slick/slick.min.js}"></script>
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/osahan.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/user/profile",
+            method: "GET",
+            success: function (res) {
+                if (res.code === 1 && res.data) {
+                    $("#user-name").text(res.data.name || "未命名用户");
+                    $("#user-avatar").attr("src", res.data.avatar || "img/default.png");
+                } else {
+                    console.error("获取用户信息失败:", res.msg);
+                }
+            },
+            error: function (err) {
+                console.error("请求用户信息出错:", err);
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('/actor/all')
+            .then(response => response.json())
+            .then(result => {
+                if (result.code === 1 && result.data && result.data.records) {
+                    const container = document.getElementById('actorContainer');
+                    container.innerHTML = '';
+
+                    result.data.records.forEach(actor => {
+                        const actorCard = `
+                        <div class="col-xl-4 col-md-6 mb-4">
+                          <div class="card p-card shadow border-0">
+                            <div class="row no-gutters">
+                              <div class="col-md-4">
+                                <img src="${actor.avatar}" class="card-img" alt="${actor.name}">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title text-gray-900">${actor.name}</h5>
+                                  <p class="card-text">${actor.description}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    `;
+                        container.insertAdjacentHTML('beforeend', actorCard);
+                    });
+                } else {
+                    alert("演员信息加载失败！");
+                }
+            })
+            .catch(error => {
+                console.error('获取演员数据失败：', error);
+            });
+    });
+</script>
+</body>
+</html>
