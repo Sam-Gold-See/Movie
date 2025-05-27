@@ -1,0 +1,49 @@
+package com.samgoldsee.movie.controller;
+
+import com.samgoldsee.movie.dto.UserSession;
+import com.samgoldsee.movie.result.PageResult;
+import com.samgoldsee.movie.result.Result;
+import com.samgoldsee.movie.service.MovieService;
+import com.samgoldsee.movie.vo.MovieVO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@Slf4j
+@Tag(name = "电影管理接口")
+@RequestMapping("/movie")
+public class MovieController {
+
+    @Resource
+    private MovieService movieService;
+
+    /**
+     * 获取随机推荐电影
+     */
+    @GetMapping("/rec")
+    @Operation(summary = "随机推荐电影")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = MovieVOPageResultResult.class)
+    ))
+    public Result<PageResult<MovieVO>> getRec() {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})正在获取推荐电影", userSession.getId());
+        PageResult<MovieVO> pageResult = movieService.getRec();
+        return Result.success(pageResult);
+    }
+
+    @Schema(name = "Result<PageResult<MovieVO>>", description = "包含MovieVO的多数据响应对象")
+    private static class MovieVOPageResultResult extends Result<PageResult<MovieVO>> {
+    }
+}
