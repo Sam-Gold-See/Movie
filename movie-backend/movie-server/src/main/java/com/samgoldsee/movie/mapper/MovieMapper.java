@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.mapper;
 
+import com.samgoldsee.movie.entity.Movie;
 import com.samgoldsee.movie.vo.MovieVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -14,4 +15,12 @@ public interface MovieMapper {
      */
     @Select("SELECT * FROM movie")
     List<MovieVO> selectAll();
+
+    /**
+     * 根据ID查询电影
+     *
+     * @param id 电影ID
+     */
+    @Select("SELECT * FROM movie WHERE id = #{id}")
+    Movie selectById(Integer id);
 }
