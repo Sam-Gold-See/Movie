@@ -1,12 +1,17 @@
 package com.samgoldsee.movie.service.impl;
 
 import com.samgoldsee.movie.constant.MessageConstant;
+import com.samgoldsee.movie.entity.Actor;
+import com.samgoldsee.movie.entity.Director;
 import com.samgoldsee.movie.entity.Movie;
 import com.samgoldsee.movie.exception.AccountException;
+import com.samgoldsee.movie.mapper.ActorMapper;
+import com.samgoldsee.movie.mapper.DirectorMapper;
 import com.samgoldsee.movie.mapper.MovieMapper;
 import com.samgoldsee.movie.mapper.UserMapper;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.service.MovieService;
+import com.samgoldsee.movie.vo.MovieDetailVO;
 import com.samgoldsee.movie.vo.MovieVO;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
@@ -23,6 +28,12 @@ public class MovieServiceImpl implements MovieService {
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private DirectorMapper directorMapper;
+
+    @Resource
+    private ActorMapper actorMapper;
 
     /**
      * 获取随机推荐电影
@@ -45,16 +56,23 @@ public class MovieServiceImpl implements MovieService {
     /**
      * 获取电影详情
      *
-     * @param id 电影ID
+     * @param movieId 电影ID
      */
     @Override
-    public MovieVO getById(Integer id) {
-        Movie movieDB = movieMapper.selectById(id);
+    public MovieDetailVO getDetailById(Integer movieId) {
+        Director directorDB = directorMapper.getByMovieId(movieId);
+        Actor actorDB = actorMapper.getByMovieId(movieId);
+        Movie movieDB = movieMapper.selectById(movieId);
 
-        MovieVO movieVO = new MovieVO();
-        BeanUtils.copyProperties(movieDB, movieVO);
+        MovieDetailVO movieDetailVO = MovieDetailVO.builder()
+                .directorId(directorDB.getId())
+                .directorName(directorDB.getName())
+                .actorId(actorDB.getId())
+                .actorName(actorDB.getName())
+                .build();
+        BeanUtils.copyProperties(movieDB, movieDetailVO);
 
-        return movieVO;
+        return movieDetailVO;
     }
 
     /**

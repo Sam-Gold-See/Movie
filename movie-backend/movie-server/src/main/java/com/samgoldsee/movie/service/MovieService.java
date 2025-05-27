@@ -1,6 +1,7 @@
 package com.samgoldsee.movie.service;
 
 import com.samgoldsee.movie.result.PageResult;
+import com.samgoldsee.movie.vo.MovieDetailVO;
 import com.samgoldsee.movie.vo.MovieVO;
 
 public interface MovieService {
@@ -13,9 +14,9 @@ public interface MovieService {
     /**
      * 获取电影详情
      *
-     * @param id 电影ID
+     * @param movieId 电影ID
      */
-    MovieVO getById(Integer id);
+    MovieDetailVO getDetailById(Integer movieId);
 
     /**
      * 播放电影
