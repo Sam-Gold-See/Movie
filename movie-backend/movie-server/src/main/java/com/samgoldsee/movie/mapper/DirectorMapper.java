@@ -14,4 +14,14 @@ public interface DirectorMapper {
      */
     @Select("SELECT * FROM director")
     List<Director> selectAll();
+
+    /**
+     * 根据电影ID查询导演信息
+     *
+     * @param movieId 电影ID
+     */
+    @Select("SELECT * FROM director d " +
+            "JOIN `director-movie` dm ON d.id = dm.director_id " +
+            "WHERE dm.movie_id = #{movieId}")
+    Director getByMovieId(Integer movieId);
 }
