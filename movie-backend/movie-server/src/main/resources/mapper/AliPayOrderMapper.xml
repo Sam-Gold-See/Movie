@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samgoldsee.movie.mapper.AliPayOrderMapper">
+    <update id="update">
+        UPDATE `ali_pay_order`
+        <set>
+            <if test="tradeNo != null">
+                `trade_no` = #{tradeNo},
+            </if>
+            <if test="userId != null">
+                `user_id` = #{userId},
+            </if>
+            <if test="totalAmount != null">
+                `total_amount` = #{totalAmount},
+            </if>
+            <if test="subject != null">
+                `subject` = #{subject},
+            </if>
+            <if test="aliPayTradeNo != null">
+                `ali_pay_trade_no` = #{aliPayTradeNo},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="updateTime != null">
+                `update_time` = #{updateTime}
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+</mapper>

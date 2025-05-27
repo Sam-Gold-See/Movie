@@ -29,4 +29,12 @@ public interface AliPayOrderMapper {
      */
     @Select("SELECT * FROM `ali_pay_order` WHERE `trade_no` = #{tradeNo}")
     AliPayOrder getByTradeNo(String tradeNo);
+
+    /**
+     * 动态更新订单对象
+     *
+     * @param order 支付宝订单实体类对象
+     */
+    @AutoFill(operation = OperationType.UPDATE)
+    void update(AliPayOrder order);
 }
