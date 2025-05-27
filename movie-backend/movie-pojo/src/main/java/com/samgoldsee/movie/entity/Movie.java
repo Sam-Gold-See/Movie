@@ -32,7 +32,7 @@ public class Movie implements Serializable {
     private Integer zoneId;
 
     // 浏览数
-    private Integer view;
+    private Long view;
 
     // 海报链接
     private String poster;
