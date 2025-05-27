@@ -43,7 +43,7 @@ public class AliPayConfig {
         // 设置参数
         Config config = new Config();
         config.protocol = "https";
-        config.gatewayHost = "openapi.alipay.com";
+        config.gatewayHost = "openapi-sandbox.dl.alipaydev.com/gateway.do";
         config.signType = this.signType;
         config.appId = this.appId;
         config.merchantPrivateKey = this.merchantPrivateKey;
