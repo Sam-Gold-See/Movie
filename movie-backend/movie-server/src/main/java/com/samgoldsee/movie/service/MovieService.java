@@ -16,4 +16,12 @@ public interface MovieService {
      * @param id 电影ID
      */
     MovieVO getById(Integer id);
+
+    /**
+     * 播放电影
+     *
+     * @param userId 用户ID
+     * @param movieId 电影ID
+     */
+    void play(Integer userId, Integer movieId);
 }

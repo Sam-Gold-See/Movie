@@ -1,7 +1,10 @@
 package com.samgoldsee.movie.service.impl;
 
+import com.samgoldsee.movie.constant.MessageConstant;
 import com.samgoldsee.movie.entity.Movie;
+import com.samgoldsee.movie.exception.AccountException;
 import com.samgoldsee.movie.mapper.MovieMapper;
+import com.samgoldsee.movie.mapper.UserMapper;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.service.MovieService;
 import com.samgoldsee.movie.vo.MovieVO;
@@ -17,6 +20,9 @@ public class MovieServiceImpl implements MovieService {
 
     @Resource
     private MovieMapper movieMapper;
+
+    @Resource
+    private UserMapper userMapper;
 
     /**
      * 获取随机推荐电影
@@ -49,5 +55,20 @@ public class MovieServiceImpl implements MovieService {
         BeanUtils.copyProperties(movieDB, movieVO);
 
         return movieVO;
+    }
+
+    /**
+     * 播放电影
+     *
+     * @param userId  用户ID
+     * @param movieId 电影ID
+     */
+    @Override
+    public void play(Integer userId, Integer movieId) {
+        Boolean user = userMapper.getById(userId).getType();
+        Boolean movie = movieMapper.selectById(movieId).getPermission();
+
+        if (!user && movie)
+            throw new AccountException(MessageConstant.PERMISSION_ERROR);
     }
 }
