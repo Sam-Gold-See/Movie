@@ -47,15 +47,15 @@ VALUES ('SamGoldSee1', '2377043893@qq.com', '$2a$10$a4IqEdp3neRXuKeU65NJyOD0eNO2
        ('SamGoldSee5', 'example3@qq.com', '$2a$10$a4IqEdp3neRXuKeU65NJyOD0eNO2v/gRJ0t1JTl0gFBhBYUJitcte',
         'M', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
        ('SamGoldSee6', 'example4@qq.com', '$2a$10$a4IqEdp3neRXuKeU65NJyOD0eNO2v/gRJ0t1JTl0gFBhBYUJitcte',
-        'M', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
+        'F', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
        ('SamGoldSee7', 'example5@qq.com', '$2a$10$a4IqEdp3neRXuKeU65NJyOD0eNO2v/gRJ0t1JTl0gFBhBYUJitcte',
-        'M', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
+        'F', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
        ('SamGoldSee8', 'example6@qq.com', '$2a$10$a4IqEdp3neRXuKeU65NJyOD0eNO2v/gRJ0t1JTl0gFBhBYUJitcte',
-        'M', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
+        'F', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
        ('SamGoldSee9', 'example7@qq.com', '$2a$10$a4IqEdp3neRXuKeU65NJyOD0eNO2v/gRJ0t1JTl0gFBhBYUJitcte',
-        'M', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
+        'F', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17'),
        ('SamGoldSee0', 'example8@qq.com', '$2a$10$a4IqEdp3neRXuKeU65NJyOD0eNO2v/gRJ0t1JTl0gFBhBYUJitcte',
-        'M', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17');
+        'F', '0', '', '2025-05-21 14:44:51', '2025-05-22 11:26:17');
 
 -- 插入电影数据
 INSERT INTO `movie` (name, description, zone_id, view, poster, permission, release_date)
