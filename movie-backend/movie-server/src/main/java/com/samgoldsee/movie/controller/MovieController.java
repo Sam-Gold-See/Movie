@@ -2,6 +2,7 @@ package com.samgoldsee.movie.controller;
 
 import com.samgoldsee.movie.dto.UserSession;
 import com.samgoldsee.movie.entity.MovieType;
+import com.samgoldsee.movie.entity.MovieZone;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.result.Result;
 import com.samgoldsee.movie.service.MovieService;
@@ -108,5 +109,25 @@ public class MovieController {
 
     @Schema(name = "Result<PageResult<MovieType>>", description = "包含MovieType的多数据统一响应对象")
     private static class MovieTypePageResultResult extends Result<PageResult<MovieType>> {
+    }
+
+    /**
+     * 查询电影地区分类
+     */
+    @GetMapping("/getZone")
+    @Operation(summary = "查询电影地区分类")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = MovieZonePageResultResult.class)
+    ))
+    public Result<PageResult<MovieZone>> getZone() {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})查询电影地区", userSession.getId());
+        PageResult<MovieZone> res = movieService.getZone();
+        return Result.success(res);
+    }
+
+    @Schema(name = "Result<PageResult<MovieZone>>", description = "包含MovieZone的多数据统一响应对象")
+    private static class MovieZonePageResultResult extends Result<PageResult<MovieZone>> {
     }
 }
