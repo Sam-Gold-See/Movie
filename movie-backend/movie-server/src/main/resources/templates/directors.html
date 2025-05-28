@@ -188,23 +188,32 @@
 
                     result.data.records.forEach(director => {
                         const directorCard = `
-                        <div class="col-xl-4 col-md-6 mb-4">
-                          <div class="card p-card shadow border-0">
-                            <div class="row no-gutters">
-                              <div class="col-md-4">
-                                <img src="${director.avatar}" class="card-img" alt="${director.name}">
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h5 class="card-title text-gray-900">${director.name}</h5>
-                                  <p class="card-text">${director.description}</p>
+                          <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card p-card shadow border-0 director-card" data-director-id="${director.id}" style="cursor:pointer;">
+                              <div class="row no-gutters">
+                                <div class="col-md-4">
+                                  <img src="${director.avatar}" class="card-img" alt="${director.name}">
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 class="card-title text-gray-900">${director.name}</h5>
+                                    <p class="card-text">${director.description}</p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                    `;
+                        `;
                         container.insertAdjacentHTML('beforeend', directorCard);
+                    });
+                    document.getElementById('directorContainer').addEventListener('click', function (e) {
+                        const card = e.target.closest('.director-card');
+                        if (card) {
+                            const directorId = card.getAttribute('data-director-id');
+                            if (directorId) {
+                                window.location.href = `/toMovies?directorId=${directorId}`;
+                            }
+                        }
                     });
                 } else {
                     alert("导演信息加载失败！");
