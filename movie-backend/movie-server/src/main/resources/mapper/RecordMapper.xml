@@ -20,4 +20,15 @@
         ORDER BY recordCnt DESC
         LIMIT 10
     </select>
+    <select id="rankWeek" resultType="com.samgoldsee.movie.vo.MovieRankVO">
+        SELECT mr.movie_id movieId,
+               m.name      movieName,
+               COUNT(*)    recordCnt
+        FROM movie_record mr
+                 JOIN movie.movie m on mr.movie_id = m.id
+        WHERE mr.create_time >= NOW() - INTERVAL 7 DAY
+        GROUP BY mr.movie_id
+        ORDER BY recordCnt DESC
+        LIMIT 10
+    </select>
 </mapper>

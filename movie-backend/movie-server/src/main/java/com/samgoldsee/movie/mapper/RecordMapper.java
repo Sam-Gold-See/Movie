@@ -31,4 +31,10 @@ public interface RecordMapper {
      * 查询本月播放情况
      */
     List<MovieRankVO> rankMonth();
+
+
+    /**
+     * 查询本周播放情况
+     */
+    List<MovieRankVO> rankWeek();
 }
