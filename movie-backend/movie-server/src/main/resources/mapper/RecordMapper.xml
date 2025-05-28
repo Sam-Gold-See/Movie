@@ -31,4 +31,17 @@
         ORDER BY recordCnt DESC
         LIMIT 10
     </select>
+    <select id="getExportRecords" resultType="com.samgoldsee.movie.vo.ReportVO">
+        SELECT mr.id          recordId,
+               u.name         userName,
+               u.gender AS    gender,
+               m.name         movieName,
+               mr.create_time startTime,
+               mr.update_time endTime
+        FROM movie_record mr
+                 JOIN user u ON mr.user_id = u.id
+                 JOIN movie m ON mr.movie_id = m.id
+        WHERE mr.create_time BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND NOW()
+        ORDER BY mr.create_time DESC
+    </select>
 </mapper>

@@ -4,6 +4,7 @@ import com.samgoldsee.movie.annotation.AutoFill;
 import com.samgoldsee.movie.entity.Record;
 import com.samgoldsee.movie.enumeration.OperationType;
 import com.samgoldsee.movie.vo.MovieRankVO;
+import com.samgoldsee.movie.vo.ReportVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -37,4 +38,9 @@ public interface RecordMapper {
      * 查询本周播放情况
      */
     List<MovieRankVO> rankWeek();
+
+    /**
+     * 导出近30天播放数据
+     */
+    List<ReportVO> getExportRecords();
 }
