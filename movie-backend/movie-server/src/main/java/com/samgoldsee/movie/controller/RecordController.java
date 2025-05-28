@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,7 +37,7 @@ public class RecordController {
             mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = MovieRankVOPageResultResult.class)
     ))
-    public Result<PageResult<MovieRankVO>> rankAll(){
+    public Result<PageResult<MovieRankVO>> rankAll() {
         UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("用户(id:{})查询全部电影播放排行", userSession.getId());
         PageResult<MovieRankVO> result = recordService.rankAll();
@@ -52,7 +53,7 @@ public class RecordController {
             mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = MovieRankVOPageResultResult.class)
     ))
-    public Result<PageResult<MovieRankVO>> rankMonth(){
+    public Result<PageResult<MovieRankVO>> rankMonth() {
         UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("用户(id:{})查询本月电影播放排行", userSession.getId());
         PageResult<MovieRankVO> result = recordService.rankMonth();
@@ -68,7 +69,7 @@ public class RecordController {
             mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = MovieRankVOPageResultResult.class)
     ))
-    public Result<PageResult<MovieRankVO>> rankWeek(){
+    public Result<PageResult<MovieRankVO>> rankWeek() {
         UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("用户(id:{})查询本周电影播放排行", userSession.getId());
         PageResult<MovieRankVO> result = recordService.rankWeek();
@@ -77,5 +78,20 @@ public class RecordController {
 
     @Schema(name = "Result<PageResult<MovieRankVO>>", description = "包含MovieRankVO的多数据统一响应对象")
     private static class MovieRankVOPageResultResult extends Result<PageResult<MovieRankVO>> {
+    }
+
+    /**
+     * 导出近30天播放数据报表
+     *
+     * @param response response
+     */
+    @GetMapping("/export")
+    @Operation(summary = "导出近30天播放数据报表")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = Result.class)
+    ))
+    public void export(HttpServletResponse response) {
+        recordService.exportBusinessData(response);
     }
 }
