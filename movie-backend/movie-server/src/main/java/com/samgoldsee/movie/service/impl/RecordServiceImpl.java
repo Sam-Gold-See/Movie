@@ -44,4 +44,19 @@ public class RecordServiceImpl implements RecordService {
 
         return pageResult;
     }
+
+    /**
+     * 查询本周播放情况
+     */
+    @Override
+    public PageResult<MovieRankVO> rankWeek() {
+        PageResult<MovieRankVO> pageResult = new PageResult<>();
+
+        List<MovieRankVO> res = recordMapper.rankWeek();
+
+        pageResult.setTotal(res.size());
+        pageResult.setRecords(res);
+
+        return pageResult;
+    }
 }

@@ -14,4 +14,9 @@ public interface RecordService {
      * 查询本月播放情况
      */
     PageResult<MovieRankVO> rankMonth();
+
+    /**
+     * 查询本周播放情况
+     */
+    PageResult<MovieRankVO> rankWeek();
 }
