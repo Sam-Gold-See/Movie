@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" th:href="@{img/logo-icon.ico}">
+    <title>奶龙影视-首页</title>
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{vendor/slick/slick-theme.min.css}"/>
+    <!-- Custom fonts for this template-->
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link th:href="@{css/osahan.min.css}" rel="stylesheet">
+</head>
+<body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+            <div class="sidebar-brand-icon">
+                <img th:src="@{img/logo-icon.ico}" alt="">
+            </div>
+            <div class="sidebar-brand-text mx-3"><img th:src="@{img/logo.png}" alt=""></div>
+        </a>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/toMovies}">
+                <i class="fas fa-fw fa-film"></i>
+                <span>电影</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toDirectors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>导演</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/toActors}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>演员</span></a>
+        </li>
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-dark topbar mb-4 pl-0 static-top shadow">
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="user-name" class="mr-2 d-none d-lg-inline text-gray-600 small">Loading...</span>
+                            <img id="user-avatar" class="img-profile rounded-circle" th:src="@{img/default.png}"
+                                 alt="头像">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" th:href="@{/toProfile}">
+                                <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                                账号设置
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                退出账号
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="osahan-slider">
+                    <div class="osahan-slider-item">
+                        <a th:href="@{/toMovieDetail(id=1)}">
+                            <img th:src="@{img/1.png}" class="img-fluid rounded" alt="...">
+                        </a>
+                    </div>
+                    <div class="osahan-slider-item">
+                        <a th:href="@{/toMovieDetail(id=2)}">
+                            <img th:src="@{img/2.png}" class="img-fluid rounded" alt="...">
+                        </a>
+                    </div>
+                    <div class="osahan-slider-item">
+                        <a th:href="@{/toMovieDetail(id=4)}">
+                            <img th:src="@{img/4.png}" class="img-fluid rounded" alt="...">
+                        </a>
+                    </div>
+                    <div class="osahan-slider-item">
+                        <a th:href="@{/toMovieDetail(id=17)}">
+                            <img th:src="@{img/17.png}" class="img-fluid rounded" alt="...">
+                        </a>
+                    </div>
+                    <div class="osahan-slider-item">
+                        <a th:href="@{/toMovieDetail(id=22)}">
+                            <img th:src="@{img/22.png}" class="img-fluid rounded" alt="...">
+                        </a>
+                    </div>
+                    <div class="osahan-slider-item">
+                        <a th:href="@{/toMovieDetail(id=25)}">
+                            <img th:src="@{img/25.png}" class="img-fluid rounded" alt="...">
+                        </a>
+                    </div>
+                </div>
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-3">
+                    <h1 class="h5 mb-0 text-gray-900">电影推荐</h1>
+                </div>
+                <!-- Content Row -->
+                <div class="row" id="rec-container">
+                </div>
+                <!-- Page Heading -->
+                <!-- 排行标题与切换按钮 -->
+                <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+                    <h1 class="h5 mb-0 text-gray-900">电影排行</h1>
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary me-1" data-type="week">本周播放</button>
+                        <button class="btn btn-sm btn-outline-primary me-1" data-type="month">本月播放</button>
+                        <button class="btn btn-sm btn-outline-primary" data-type="all">全部播放</button>
+                        <button class="btn btn-sm btn-outline-primary me-1" data-type="rating">好评排行</button>
+                        <button class="btn btn-sm btn-outline-primary me-1" data-type="poi" onclick="window.location.href='/record/export'">导出近30天播放数据</button>
+                    </div>
+                </div>
+                <!-- Content Row -->
+                <div class="row">
+                    <div id="rank-chart" style="width: 100%; height: 500px;"></div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; 2025 | SamGoldSee</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">真的要退出小奶龙影视网站吗？</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                <a class="btn btn-primary" th:href="@{/toLogout}">退出</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+<!-- Slick Carousel -->
+<script th:src="@{vendor/slick/slick.min.js}"></script>
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/osahan.min.js}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/user/profile",
+            method: "GET",
+            success: function (res) {
+                if (res.code === 1 && res.data) {
+                    $("#user-name").text(res.data.name || "未命名用户");
+                    $("#user-avatar").attr("src", res.data.avatar || "img/default.png");
+                } else {
+                    console.error("获取用户信息失败:", res.msg);
+                }
+            },
+            error: function (err) {
+                console.error("请求用户信息出错:", err);
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/movie/rec')
+            .then(response => response.json())
+            .then(data => {
+                const row = document.querySelector('.row');
+                row.innerHTML = ''; // 清空旧内容
+
+                data.data.records.forEach(movie => {
+                    const date = new Date(movie.releaseDate);
+                    const year = date.getFullYear();
+                    const fullDate = `${year}年${date.getMonth() + 1}月${date.getDate()}日`;
+
+                    const card = `
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card m-card shadow border-0">
+                        <a href="/toMovieDetail?id=${movie.id}">
+                            <div class="m-card-cover">
+                                <div class="position-absolute bg-white shadow-sm rounded text-center p-2 m-2 love-box">
+                                    <h6 class="text-gray-900 mb-0 font-weight-bold">
+                                        <i class="fas fa-eye text-primary"></i> ${(movie.view / 10000).toFixed(1)}万
+                                    </h6>
+                                    <small class="${movie.permission ? 'text-danger font-weight-bold' : 'text-muted'}">
+                                        ${movie.permission ? 'VIP' : '免费'}
+                                    </small>
+                                </div>
+                                <img src="${movie.poster}" class="card-img-top" alt="${movie.name}">
+                            </div>
+                            <div class="card-body p-3">
+                                <h5 class="card-title text-gray-900 mb-1">${movie.name}</h5>
+                                <p class="card-text">
+                                    <small class="text-muted">${movie.description.substring(0, 14)}...</small>
+                                    <br>
+                                    <small class="text-gray-600">
+                                        <i class="fas fa-calendar-alt fa-sm text-gray-400"></i> ${year}年上映 (${fullDate})
+                                    </small>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            `;
+                    row.insertAdjacentHTML('beforeend', card);
+                });
+            })
+            .catch(error => console.error('加载推荐电影失败:', error));
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chartDom = document.getElementById('rank-chart');
+        const myChart = echarts.init(chartDom);
+
+        const endpointMap = {
+            rating: '/rating/rank',
+            week: '/record/rankWeek',
+            month: '/record/rankMonth',
+            all: '/record/rankAll'
+        };
+
+        function loadRankData(type = 'rating') {
+            const url = endpointMap[type];
+            if (!url) return;
+
+            fetch(url)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.code !== 1 || !res.data) {
+                        console.error('排行数据获取失败');
+                        return;
+                    }
+
+                    const records = res.data.records || [];
+                    const movieNames = records.map(item => item.movieName);
+                    const movieIds = records.map(item => item.movieId);
+
+                    // 根据排行榜类型选择字段
+                    let values;
+                    let yAxisLabel;
+                    if (type === 'rating') {
+                        values = records.map(item => item.avgRating || 0);
+                        yAxisLabel = '平均评分';
+                    } else {
+                        values = records.map(item => item.recordCnt || 0);  // 使用 recordCnt
+                        yAxisLabel = '播放量';
+                    }
+
+                    const titleMap = {
+                        rating: '电影好评排行',
+                        week: '本周播放排行',
+                        month: '本月播放排行',
+                        all: '全部播放排行'
+                    };
+
+                    const option = {
+                        title: {
+                            text: titleMap[type],
+                            left: 'center',
+                            textStyle: {fontSize: 20}
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {type: 'shadow'},
+                            formatter: function (params) {
+                                const i = params[0].dataIndex;
+                                return `${movieNames[i]}<br>${yAxisLabel}：${values[i]}`;
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: movieNames,
+                            axisLabel: {rotate: 45}
+                        },
+                        yAxis: {
+                            type: 'value',
+                            name: yAxisLabel,
+                            min: 0
+                        },
+                        series: [{
+                            data: values,
+                            type: 'bar',
+                            itemStyle: {color: '#5470C6'}
+                        }]
+                    };
+
+                    myChart.setOption(option);
+
+                    myChart.off('click');
+                    myChart.on('click', function (params) {
+                        const index = params.dataIndex;
+                        const movieId = movieIds[index];
+                        window.location.href = `/toMovieDetail?id=${movieId}`;
+                    });
+                })
+                .catch(err => console.error('排行数据请求出错:', err));
+        }
+
+        // 初始加载好评排行
+        loadRankData('rating');
+
+        // 按钮切换事件
+        document.querySelectorAll('[data-type]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.getAttribute('data-type');
+                loadRankData(type);
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            myChart.resize();
+        });
+    });
+</script>
+</body>
+</html>
