@@ -146,4 +146,23 @@ public class MovieController {
         PageResult<MovieVO> pageResult = movieService.getAll();
         return Result.success(pageResult);
     }
+
+    /**
+     * 根据条件查询电影
+     *
+     * @param typeId 种类ID
+     * @param zoneId 地区ID
+     */
+    @GetMapping("/optionSearch")
+    @Operation(summary = "查询符合条件电影")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = MovieVOPageResultResult.class)
+    ))
+    public Result<PageResult<MovieVO>> optionSearch(Integer typeId, Integer zoneId) {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})正在查询符合条件电影:{},{}", userSession.getId(), typeId, zoneId);
+        PageResult<MovieVO> pageResult = movieService.optionSearch(typeId, zoneId);
+        return Result.success(pageResult);
+    }
 }
