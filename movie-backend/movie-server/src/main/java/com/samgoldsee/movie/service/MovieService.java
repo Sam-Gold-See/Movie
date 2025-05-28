@@ -42,4 +42,12 @@ public interface MovieService {
      * 获取全部电影
      */
     PageResult<MovieVO> getAll();
+
+    /**
+     * 根据条件查询电影
+     *
+     * @param typeId 种类ID
+     * @param zoneId 地区ID
+     */
+    PageResult<MovieVO> optionSearch(Integer typeId, Integer zoneId);
 }

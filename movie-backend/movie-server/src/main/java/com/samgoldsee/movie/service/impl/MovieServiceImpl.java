@@ -138,4 +138,21 @@ public class MovieServiceImpl implements MovieService {
 
         return pageResult;
     }
+
+    /**
+     * 根据条件查询电影
+     *
+     * @param typeId 种类ID
+     * @param zoneId 地区ID
+     */
+    @Override
+    public PageResult<MovieVO> optionSearch(Integer typeId, Integer zoneId) {
+        List<MovieVO> res = movieMapper.selectOption(typeId, zoneId);
+        PageResult<MovieVO> pageResult = new PageResult<>();
+
+        pageResult.setTotal(res.size());
+        pageResult.setRecords(res);
+
+        return pageResult;
+    }
 }
