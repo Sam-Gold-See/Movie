@@ -1,6 +1,7 @@
 package com.samgoldsee.movie.service.impl;
 
 import com.samgoldsee.movie.constant.MessageConstant;
+import com.samgoldsee.movie.dto.OperationSearchDTO;
 import com.samgoldsee.movie.entity.*;
 import com.samgoldsee.movie.entity.Record;
 import com.samgoldsee.movie.exception.AccountException;
@@ -142,12 +143,11 @@ public class MovieServiceImpl implements MovieService {
     /**
      * 根据条件查询电影
      *
-     * @param typeId 种类ID
-     * @param zoneId 地区ID
+     * @param operationSearchDTO 条件搜索DTO对象
      */
     @Override
-    public PageResult<MovieVO> optionSearch(Integer typeId, Integer zoneId) {
-        List<MovieVO> res = movieMapper.selectOption(typeId, zoneId);
+    public PageResult<MovieVO> optionSearch(OperationSearchDTO operationSearchDTO) {
+        List<MovieVO> res = movieMapper.selectOption(operationSearchDTO);
         PageResult<MovieVO> pageResult = new PageResult<>();
 
         pageResult.setTotal(res.size());

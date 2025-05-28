@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.service;
 
+import com.samgoldsee.movie.dto.OperationSearchDTO;
 import com.samgoldsee.movie.entity.MovieType;
 import com.samgoldsee.movie.entity.MovieZone;
 import com.samgoldsee.movie.result.PageResult;
@@ -46,8 +47,7 @@ public interface MovieService {
     /**
      * 根据条件查询电影
      *
-     * @param typeId 种类ID
-     * @param zoneId 地区ID
+     * @param operationSearchDTO 条件搜索DTO对象
      */
-    PageResult<MovieVO> optionSearch(Integer typeId, Integer zoneId);
+    PageResult<MovieVO> optionSearch(OperationSearchDTO operationSearchDTO);
 }
