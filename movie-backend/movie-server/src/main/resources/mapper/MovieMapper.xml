@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.samgoldsee.movie.mapper.MovieMapper">
+    <select id="selectOption" resultType="com.samgoldsee.movie.vo.MovieVO">
+        SELECT m.*
+        FROM `movie` m
+        JOIN `movie-movie_type` mmt ON m.id = mmt.movie_id
+        <where>
+            <if test="typeId != null">
+                AND mmt.type_id = #{typeId}
+            </if>
+            <if test="zoneId != null">
+                AND m.zone_id = #{zoneId}
+            </if>
+        </where>
+    </select>
 </mapper>

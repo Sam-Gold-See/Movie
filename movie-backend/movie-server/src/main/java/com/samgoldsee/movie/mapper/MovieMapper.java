@@ -37,4 +37,12 @@ public interface MovieMapper {
      */
     @Select("SELECT * FROM `movie_zone` ORDER BY `id`")
     List<MovieZone> selectZone();
+
+    /**
+     * 根据条件查询电影
+     *
+     * @param typeId 种类ID
+     * @param zoneId 地区ID
+     */
+    List<MovieVO> selectOption(Integer typeId, Integer zoneId);
 }
