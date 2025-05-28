@@ -1,0 +1,21 @@
+package com.samgoldsee.movie.mapper;
+
+import com.samgoldsee.movie.annotation.AutoFill;
+import com.samgoldsee.movie.entity.Record;
+import com.samgoldsee.movie.enumeration.OperationType;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface RecordMapper {
+
+    /**
+     * 插入观影记录
+     *
+     * @param record 记录实体类对象
+     */
+    @AutoFill(operation = OperationType.INSERT)
+    @Insert("INSERT INTO `movie_record` (movie_id, user_id, create_time, update_time) " +
+            "VALUES (#{movieId}, #{userId}, #{createTime}, #{updateTime})")
+    void insert(Record record);
+}
