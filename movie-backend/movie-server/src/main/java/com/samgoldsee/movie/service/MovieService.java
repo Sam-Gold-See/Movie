@@ -37,4 +37,9 @@ public interface MovieService {
      * 查询电影地区分类
      */
     PageResult<MovieZone> getZone();
+
+    /**
+     * 获取全部电影
+     */
+    PageResult<MovieVO> getAll();
 }
