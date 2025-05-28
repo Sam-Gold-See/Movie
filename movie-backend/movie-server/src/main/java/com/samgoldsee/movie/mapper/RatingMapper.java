@@ -27,4 +27,12 @@ public interface RatingMapper {
     @AutoFill(operation = OperationType.INSERT)
     @Insert("INSERT INTO `rating` (`rating`, `user_id`, `movie_id`, `create_time`, `update_time`) VALUES (#{rating}, #{userId}, #{movieId}, #{createTime}, #{updateTime})")
     void insert(Rating ratingOb);
+
+    /**
+     * 更新用户影评
+     *
+     * @param ratingOb 评分实体对象
+     */
+    @AutoFill(operation = OperationType.UPDATE)
+    void update(Rating ratingOb);
 }
