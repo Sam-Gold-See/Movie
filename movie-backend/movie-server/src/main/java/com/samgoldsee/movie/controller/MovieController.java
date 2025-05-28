@@ -1,6 +1,7 @@
 package com.samgoldsee.movie.controller;
 
 import com.samgoldsee.movie.dto.UserSession;
+import com.samgoldsee.movie.entity.MovieType;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.result.Result;
 import com.samgoldsee.movie.service.MovieService;
@@ -87,5 +88,25 @@ public class MovieController {
         log.info("用户(id:{})播放电影(id:{})", userSession.getId(), id);
         movieService.play(userSession.getId(), id);
         return Result.success();
+    }
+
+    /**
+     * 查询电影种类分类
+     */
+    @GetMapping("/getType")
+    @Operation(summary = "查询电影种类分类")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = MovieTypePageResultResult.class)
+    ))
+    public Result<PageResult<MovieType>> getType() {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})查询电影类型", userSession.getId());
+        PageResult<MovieType> res = movieService.getType();
+        return Result.success(res);
+    }
+
+    @Schema(name = "Result<PageResult<MovieType>>", description = "包含MovieType的多数据统一响应对象")
+    private static class MovieTypePageResultResult extends Result<PageResult<MovieType>> {
     }
 }
