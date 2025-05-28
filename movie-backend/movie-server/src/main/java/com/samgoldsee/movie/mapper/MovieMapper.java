@@ -15,7 +15,6 @@ public interface MovieMapper {
     /**
      * 查询所有电影
      */
-    @Select("SELECT * FROM movie")
     List<MovieVO> selectAll();
 
     /**
