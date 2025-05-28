@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.controller;
 
+import com.samgoldsee.movie.dto.OperationSearchDTO;
 import com.samgoldsee.movie.dto.UserSession;
 import com.samgoldsee.movie.entity.MovieType;
 import com.samgoldsee.movie.entity.MovieZone;
@@ -17,10 +18,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -150,19 +148,18 @@ public class MovieController {
     /**
      * 根据条件查询电影
      *
-     * @param typeId 种类ID
-     * @param zoneId 地区ID
+     * @param operationSearchDTO 条件搜索DTO
      */
-    @GetMapping("/optionSearch")
+    @PostMapping("/optionSearch")
     @Operation(summary = "查询符合条件电影")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
             mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = MovieVOPageResultResult.class)
     ))
-    public Result<PageResult<MovieVO>> optionSearch(Integer typeId, Integer zoneId) {
+    public Result<PageResult<MovieVO>> optionSearch(@RequestBody OperationSearchDTO operationSearchDTO) {
         UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info("用户(id:{})正在查询符合条件电影:{},{}", userSession.getId(), typeId, zoneId);
-        PageResult<MovieVO> pageResult = movieService.optionSearch(typeId, zoneId);
+        log.info("用户(id:{})正在查询符合条件电影:{}", userSession.getId(), operationSearchDTO);
+        PageResult<MovieVO> pageResult = movieService.optionSearch(operationSearchDTO);
         return Result.success(pageResult);
     }
 }
