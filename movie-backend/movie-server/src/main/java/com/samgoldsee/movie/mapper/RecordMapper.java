@@ -3,8 +3,11 @@ package com.samgoldsee.movie.mapper;
 import com.samgoldsee.movie.annotation.AutoFill;
 import com.samgoldsee.movie.entity.Record;
 import com.samgoldsee.movie.enumeration.OperationType;
+import com.samgoldsee.movie.vo.MovieRankVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface RecordMapper {
@@ -18,4 +21,9 @@ public interface RecordMapper {
     @Insert("INSERT INTO `movie_record` (movie_id, user_id, create_time, update_time) " +
             "VALUES (#{movieId}, #{userId}, #{createTime}, #{updateTime})")
     void insert(Record record);
+
+    /**
+     * 查询本周播放情况
+     */
+    List<MovieRankVO> rankAll();
 }

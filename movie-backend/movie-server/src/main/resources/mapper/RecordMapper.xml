@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.samgoldsee.movie.mapper.RecordMapper">
+    <select id="rankAll" resultType="com.samgoldsee.movie.vo.MovieRankVO">
+        SELECT mr.movie_id movieId, m.name movieName, COUNT(mr.id) recordCnt
+        FROM `movie_record` mr
+                 JOIN movie.movie m on m.id = mr.movie_id
+        GROUP BY m.id
+        ORDER BY recordCnt DESC
+        LIMIT 10
+    </select>
+</mapper>
