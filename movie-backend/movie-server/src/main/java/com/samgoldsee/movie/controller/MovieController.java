@@ -77,7 +77,7 @@ public class MovieController {
      * @param id 电影ID
      */
     @GetMapping("/play")
-    @Operation(summary = "电影")
+    @Operation(summary = "播放电影")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
             mediaType = MediaType.APPLICATION_JSON_VALUE,
             schema = @Schema(implementation = Result.class)
