@@ -4,11 +4,9 @@ import com.samgoldsee.movie.constant.MessageConstant;
 import com.samgoldsee.movie.entity.Actor;
 import com.samgoldsee.movie.entity.Director;
 import com.samgoldsee.movie.entity.Movie;
+import com.samgoldsee.movie.entity.Record;
 import com.samgoldsee.movie.exception.AccountException;
-import com.samgoldsee.movie.mapper.ActorMapper;
-import com.samgoldsee.movie.mapper.DirectorMapper;
-import com.samgoldsee.movie.mapper.MovieMapper;
-import com.samgoldsee.movie.mapper.UserMapper;
+import com.samgoldsee.movie.mapper.*;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.service.MovieService;
 import com.samgoldsee.movie.vo.MovieDetailVO;
@@ -34,6 +32,9 @@ public class MovieServiceImpl implements MovieService {
 
     @Resource
     private ActorMapper actorMapper;
+
+    @Resource
+    private RecordMapper recordMapper;
 
     /**
      * 获取随机推荐电影
@@ -88,5 +89,11 @@ public class MovieServiceImpl implements MovieService {
 
         if (!user && movie)
             throw new AccountException(MessageConstant.PERMISSION_ERROR);
+
+        Record record = Record.builder()
+                .movieId(movieId)
+                .userId(userId)
+                .build();
+        recordMapper.insert(record);
     }
 }
