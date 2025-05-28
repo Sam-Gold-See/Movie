@@ -16,7 +16,7 @@ public interface RatingMapper {
      * @param userId  用户ID
      * @param movieId 电影ID
      */
-    @Select("SELECT * FROM `rating` WHERE `user_id` = #{userID} AND `movie_id` = #{movieId} ")
+    @Select("SELECT * FROM `rating` WHERE `user_id` = #{userId} AND `movie_id` = #{movieId} ")
     Rating selectByUMId(Integer userId, Integer movieId);
 
     /**
