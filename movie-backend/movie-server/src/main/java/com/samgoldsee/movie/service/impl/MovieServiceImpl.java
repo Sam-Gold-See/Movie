@@ -1,9 +1,7 @@
 package com.samgoldsee.movie.service.impl;
 
 import com.samgoldsee.movie.constant.MessageConstant;
-import com.samgoldsee.movie.entity.Actor;
-import com.samgoldsee.movie.entity.Director;
-import com.samgoldsee.movie.entity.Movie;
+import com.samgoldsee.movie.entity.*;
 import com.samgoldsee.movie.entity.Record;
 import com.samgoldsee.movie.exception.AccountException;
 import com.samgoldsee.movie.mapper.*;
@@ -95,5 +93,20 @@ public class MovieServiceImpl implements MovieService {
                 .userId(userId)
                 .build();
         recordMapper.insert(record);
+    }
+
+    /**
+     * 查询电影种类分类
+     */
+    @Override
+    public PageResult<MovieType> getType() {
+        PageResult<MovieType> pageResult = new PageResult<>();
+
+        List<MovieType> res = movieMapper.selectType();
+
+        pageResult.setTotal(res.size());
+        pageResult.setRecords(res);
+
+        return pageResult;
     }
 }

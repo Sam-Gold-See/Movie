@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.service;
 
+import com.samgoldsee.movie.entity.MovieType;
 import com.samgoldsee.movie.result.PageResult;
 import com.samgoldsee.movie.vo.MovieDetailVO;
 import com.samgoldsee.movie.vo.MovieVO;
@@ -25,4 +26,10 @@ public interface MovieService {
      * @param movieId 电影ID
      */
     void play(Integer userId, Integer movieId);
+
+    /**
+     * 查询电影种类分类
+     *
+     */
+    PageResult<MovieType> getType();
 }
