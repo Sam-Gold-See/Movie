@@ -3,9 +3,12 @@ package com.samgoldsee.movie.mapper;
 import com.samgoldsee.movie.annotation.AutoFill;
 import com.samgoldsee.movie.entity.Rating;
 import com.samgoldsee.movie.enumeration.OperationType;
+import com.samgoldsee.movie.vo.MovieRankVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface RatingMapper {
@@ -35,4 +38,9 @@ public interface RatingMapper {
      */
     @AutoFill(operation = OperationType.UPDATE)
     void update(Rating ratingOb);
+
+    /**
+     * 查询好评排行
+     */
+    List<MovieRankVO> rank();
 }

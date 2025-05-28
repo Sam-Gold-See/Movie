@@ -19,4 +19,12 @@
         </set>
         WHERE `id` = #{id}
     </update>
+    <select id="rank" resultType="com.samgoldsee.movie.vo.MovieRankVO">
+        SELECT r.movie_id, m.name movieName, AVG(rating) avgRating
+        FROM `rating` r
+                 JOIN movie.movie m on m.id = r.movie_id
+        GROUP BY m.id
+        ORDER BY avgRating DESC
+        LIMIT 10;
+    </select>
 </mapper>
