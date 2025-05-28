@@ -24,14 +24,11 @@ public class ReportVO implements Serializable {
     // 用户名
     private String userName;
 
-    // 用户邮箱
-    private String email;
-
     // 用户性别
     private String gender;
 
-    // 电影ID
-    private Integer movieId;
+    // 电影名
+    private String movieName;
 
     // 开始时间
     private LocalDateTime startTime;
