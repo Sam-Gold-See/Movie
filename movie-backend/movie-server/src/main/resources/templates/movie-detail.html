@@ -140,7 +140,14 @@
 <!-- Custom scripts for all pages-->
 <script th:src="@{js/osahan.min.js}"></script>
 <script>
+    // 获取 URL 中的参数
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
     $(document).ready(function () {
+        // 加载用户信息
         $.ajax({
             url: "/user/profile",
             method: "GET",
@@ -156,13 +163,28 @@
                 console.error("请求用户信息出错:", err);
             }
         });
-    });
 
-    // 获取 URL 中的参数
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
+        const movieId = getQueryParam("id");
+        if (!movieId) {
+            alert("未提供电影ID");
+            return;
+        }
+
+        // 获取电影详情
+        fetch(`/movie/detail?id=${movieId}`)
+            .then(response => response.json())
+            .then(res => {
+                if (res.code === 1 && res.data) {
+                    renderMovieDetail(res.data);
+                } else {
+                    alert("获取电影详情失败");
+                }
+            })
+            .catch(err => {
+                console.error("请求出错", err);
+                alert("网络错误，无法加载电影详情");
+            });
+    });
 
     function renderMovieDetail(movie) {
         const releaseDate = new Date(movie.releaseDate);
@@ -175,56 +197,45 @@
   <div class="row justify-content-center">
     <div class="col-xl-10 col-lg-10 col-md-12">
       <div class="row align-items-center bg-white shadow rounded p-4">
-        <!-- 左侧图片 -->
         <div class="col-md-4 mb-3 mb-md-0">
           <img src="${movie.poster}" class="img-fluid rounded shadow-sm" alt="${movie.name}">
         </div>
-
-        <!-- 右侧文本信息 -->
         <div class="col-md-8">
           <h2 class="text-gray-900 font-weight-bold mb-3 display-6">${movie.name}</h2>
-
           <p><strong class="text-gray-800">上映时间：</strong>${year}年 (${fullDate})</p>
-
           <p>
             <strong class="text-gray-800">观看权限：</strong>
             <span class="${movie.permission ? 'text-danger font-weight-bold' : 'text-muted'}">
               ${movie.permission ? 'VIP专享' : '免费观看'}
             </span>
           </p>
-
           <p><strong class="text-gray-800">播放量：</strong>${(movie.view / 10000).toFixed(1)} 万次</p>
-
           <p><strong class="text-gray-800">简介：</strong>${movie.description}</p>
-
-          <p>
-            <strong class="text-gray-800">导演：</strong>
-            <a href="/toDirectors?id=${movie.directorId}" class="text-primary">
-              ${movie.directorName}
-            </a>
+          <p><strong class="text-gray-800">导演：</strong>
+            <a href="/toDirectors?id=${movie.directorId}" class="text-primary">${movie.directorName}</a>
           </p>
-
-          <p>
-            <strong class="text-gray-800">演员：</strong>
-            <a href="/toActors?id=${movie.actorId}" class="text-primary">
-              ${movie.actorName}
-            </a>
+          <p><strong class="text-gray-800">演员：</strong>
+            <a href="/toActors?id=${movie.actorId}" class="text-primary">${movie.actorName}</a>
           </p>
-
           <div class="mt-4">
             <button id="playButton" class="btn btn-danger btn-lg">
               <i class="fas fa-play mr-2"></i> 播放
             </button>
+          </div>
+          <div class="mt-4">
+            <label for="ratingInput"><strong class="text-gray-800">评分（1-5）:</strong></label>
+            <input type="number" id="ratingInput" class="form-control d-inline-block w-auto ml-2" min="1" max="5" step="1" value="5">
+            <button id="submitRating" class="btn btn-primary ml-2">提交评分</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-`;
+        `;
 
-        // 绑定播放按钮事件
-        document.getElementById('playButton').addEventListener('click', () => {
+        // 播放按钮事件
+        document.getElementById("playButton").addEventListener("click", () => {
             fetch(`/movie/play?id=${movie.id}`)
                 .then(res => res.json())
                 .then(res => {
@@ -239,30 +250,36 @@
                     alert('请求失败，请稍后重试');
                 });
         });
-    }
 
-    // 页面加载后发送请求
-    document.addEventListener("DOMContentLoaded", () => {
-        const id = getQueryParam("id");
-        if (!id) {
-            alert("未提供电影ID");
-            return;
-        }
+        // 评分按钮事件
+        document.getElementById("submitRating").addEventListener("click", () => {
+            const rating = parseInt(document.getElementById("ratingInput").value, 10);
+            if (isNaN(rating) || rating < 1 || rating > 5) {
+                alert("请输入1到5之间的整数评分");
+                return;
+            }
 
-        fetch(`/movie/detail?id=${id}`)
-            .then(response => response.json())
-            .then(res => {
-                if (res.code === 1 && res.data) {
-                    renderMovieDetail(res.data);
-                } else {
-                    alert("获取电影详情失败");
+            $.ajax({
+                url: "/rating/upload",
+                method: "POST",
+                data: {
+                    movieId: movie.id,
+                    rating: rating
+                },
+                success: function (res) {
+                    if (res.code === 1) {
+                        alert(`评分成功！您给出的评分为 ${rating} 分`);
+                    } else {
+                        alert(`评分失败：${res.msg}`);
+                    }
+                },
+                error: function (err) {
+                    console.error("评分请求失败:", err);
+                    alert("评分失败，请稍后再试");
                 }
-            })
-            .catch(err => {
-                console.error("请求出错", err);
-                alert("网络错误，无法加载电影详情");
             });
-    });
+        });
+    }
 </script>
 </body>
 </html>
