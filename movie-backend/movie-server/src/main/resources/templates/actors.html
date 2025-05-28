@@ -188,23 +188,31 @@
 
                     result.data.records.forEach(actor => {
                         const actorCard = `
-                        <div class="col-xl-4 col-md-6 mb-4">
-                          <div class="card p-card shadow border-0">
-                            <div class="row no-gutters">
-                              <div class="col-md-4">
-                                <img src="${actor.avatar}" class="card-img" alt="${actor.name}">
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h5 class="card-title text-gray-900">${actor.name}</h5>
-                                  <p class="card-text">${actor.description}</p>
+                            <div class="col-xl-4 col-md-6 mb-4">
+                              <div class="card p-card shadow border-0 actor-card" data-id="${actor.id}" style="cursor:pointer;">
+                                <div class="row no-gutters">
+                                  <div class="col-md-4">
+                                    <img src="${actor.avatar}" class="card-img" alt="${actor.name}">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-gray-900">${actor.name}</h5>
+                                      <p class="card-text">${actor.description}</p>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                    `;
+                            `;
                         container.insertAdjacentHTML('beforeend', actorCard);
+                    });
+                    // 注册点击事件（放在 fetch 后）
+                    document.addEventListener('click', function (e) {
+                        const card = e.target.closest('.actor-card');
+                        if (card) {
+                            const actorId = card.getAttribute('data-id');
+                            window.location.href = `/toMovies?actorId=${actorId}`;
+                        }
                     });
                 } else {
                     alert("演员信息加载失败！");
