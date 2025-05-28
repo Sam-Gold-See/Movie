@@ -40,7 +40,7 @@ CREATE TABLE `actor`
     `description` TEXT COMMENT '演员简介'
 ) COMMENT '演员';
 
-CREATE TABLE director
+CREATE TABLE `director`
 (
     `id`          INT PRIMARY KEY AUTO_INCREMENT COMMENT '导演id',
     `name`        VARCHAR(50) NOT NULL COMMENT '导演名',
@@ -102,12 +102,25 @@ CREATE TABLE `ali_pay_order`
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) COMMENT '支付记录';
 
-CREATE TABLE `user_like`
+CREATE TABLE `movie_record`
 (
-    `id`          INT AUTO_INCREMENT PRIMARY KEY COMMENT '点赞id',
+    `id`          BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '播放记录ID',
+    `movie_id`    INT COMMENT '电影ID',
+    `user_id`     INT COMMENT '用户ID',
+    `create_time` DATETIME COMMENT '播放时间',
+    `update_time` DATETIME COMMENT '结束时间',
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+    FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
+) COMMENT '电影播放记录';
+
+CREATE TABLE `rating`
+(
+    `id`          INT AUTO_INCREMENT PRIMARY KEY COMMENT '评分id',
+    `rating`      INT CHECK ( `rating` BETWEEN 1 AND 5 ) COMMENT '评分',
     `user_id`     INT      NOT NULL COMMENT '用户id',
     `movie_id`    INT      NOT NULL COMMENT '电影id',
     `create_time` DATETIME NOT NULL COMMENT '创建时间',
+    `update_time` DATETIME NOT NULL COMMENT '更新时间',
     FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
     FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
 ) COMMENT '点赞';
