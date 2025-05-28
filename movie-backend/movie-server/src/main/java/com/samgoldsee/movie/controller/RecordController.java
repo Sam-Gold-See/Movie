@@ -30,7 +30,7 @@ public class RecordController {
     /**
      * 查询全部播放情况
      */
-    @GetMapping("/rankWeek")
+    @GetMapping("/rankAll")
     @Operation(summary = "查询全部播放排行")
     @ApiResponse(responseCode = "200", description = "成功", content = @Content(
             mediaType = MediaType.APPLICATION_JSON_VALUE,
@@ -40,6 +40,22 @@ public class RecordController {
         UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("用户(id:{})查询全部电影播放排行", userSession.getId());
         PageResult<MovieRankVO> result = recordService.rankAll();
+        return Result.success(result);
+    }
+
+    /**
+     * 查询本月播放情况
+     */
+    @GetMapping("/rankMonth")
+    @Operation(summary = "查询本月播放排行")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = MovieRankVOPageResultResult.class)
+    ))
+    public Result<PageResult<MovieRankVO>> rankMonth(){
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})查询本月电影播放排行", userSession.getId());
+        PageResult<MovieRankVO> result = recordService.rankMonth();
         return Result.success(result);
     }
 
