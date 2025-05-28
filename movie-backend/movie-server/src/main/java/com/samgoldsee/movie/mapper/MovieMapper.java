@@ -1,5 +1,6 @@
 package com.samgoldsee.movie.mapper;
 
+import com.samgoldsee.movie.dto.OperationSearchDTO;
 import com.samgoldsee.movie.entity.Movie;
 import com.samgoldsee.movie.entity.MovieType;
 import com.samgoldsee.movie.entity.MovieZone;
@@ -40,8 +41,7 @@ public interface MovieMapper {
     /**
      * 根据条件查询电影
      *
-     * @param typeId 种类ID
-     * @param zoneId 地区ID
+     * @param operationSearchDTO 条件搜索DTO对象
      */
-    List<MovieVO> selectOption(Integer typeId, Integer zoneId);
+    List<MovieVO> selectOption(OperationSearchDTO operationSearchDTO);
 }
