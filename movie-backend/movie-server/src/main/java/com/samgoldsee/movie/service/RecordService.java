@@ -9,4 +9,9 @@ public interface RecordService {
      * 查询全部播放情况
      */
     PageResult<MovieRankVO> rankAll();
+
+    /**
+     * 查询本月播放情况
+     */
+    PageResult<MovieRankVO> rankMonth();
 }

@@ -29,4 +29,19 @@ public class RecordServiceImpl implements RecordService {
 
         return pageResult;
     }
+
+    /**
+     * 查询本月播放情况
+     */
+    @Override
+    public PageResult<MovieRankVO> rankMonth() {
+        PageResult<MovieRankVO> pageResult = new PageResult<>();
+
+        List<MovieRankVO> res = recordMapper.rankMonth();
+
+        pageResult.setTotal(res.size());
+        pageResult.setRecords(res);
+
+        return pageResult;
+    }
 }
