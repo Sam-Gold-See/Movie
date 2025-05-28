@@ -109,4 +109,19 @@ public class MovieServiceImpl implements MovieService {
 
         return pageResult;
     }
+
+    /**
+     * 查询电影地区分类
+     */
+    @Override
+    public PageResult<MovieZone> getZone() {
+        PageResult<MovieZone> pageResult = new PageResult<>();
+
+        List<MovieZone> res = movieMapper.selectZone();
+
+        pageResult.setTotal(res.size());
+        pageResult.setRecords(res);
+
+        return pageResult;
+    }
 }
