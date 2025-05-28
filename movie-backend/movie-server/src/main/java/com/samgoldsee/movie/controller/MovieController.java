@@ -130,4 +130,20 @@ public class MovieController {
     @Schema(name = "Result<PageResult<MovieZone>>", description = "包含MovieZone的多数据统一响应对象")
     private static class MovieZonePageResultResult extends Result<PageResult<MovieZone>> {
     }
+
+    /**
+     * 获取全部电影
+     */
+    @GetMapping("/all")
+    @Operation(summary = "获取全部电影")
+    @ApiResponse(responseCode = "200", description = "成功", content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = MovieVOPageResultResult.class)
+    ))
+    public Result<PageResult<MovieVO>> getAll() {
+        UserSession userSession = (UserSession) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("用户(id:{})正在获取全部电影", userSession.getId());
+        PageResult<MovieVO> pageResult = movieService.getAll();
+        return Result.success(pageResult);
+    }
 }

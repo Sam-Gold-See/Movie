@@ -124,4 +124,18 @@ public class MovieServiceImpl implements MovieService {
 
         return pageResult;
     }
+
+    /**
+     * 获取全部电影
+     */
+    @Override
+    public PageResult<MovieVO> getAll() {
+        List<MovieVO> res = movieMapper.selectAll();
+        PageResult<MovieVO> pageResult = new PageResult<>();
+
+        pageResult.setTotal(res.size());
+        pageResult.setRecords(res);
+
+        return pageResult;
+    }
 }
