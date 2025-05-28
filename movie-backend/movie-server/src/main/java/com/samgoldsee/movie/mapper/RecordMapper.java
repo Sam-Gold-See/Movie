@@ -23,7 +23,12 @@ public interface RecordMapper {
     void insert(Record record);
 
     /**
-     * 查询本周播放情况
+     * 查询全部播放情况
      */
     List<MovieRankVO> rankAll();
+
+    /**
+     * 查询本月播放情况
+     */
+    List<MovieRankVO> rankMonth();
 }
