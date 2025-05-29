@@ -529,10 +529,10 @@
         }
 
         // 生成唯一订单号
-        const traceNo = 'TRADE_' + Date.now();
+        const tradeNo = 'TRADE_' + Date.now();
 
         // 拼接支付链接并跳转
-        const url = `/alipay/pay?traceNo=${encodeURIComponent(traceNo)}&totalAmount=${encodeURIComponent(amount)}&subject=${encodeURIComponent(desc)}`;
+        const url = `/alipay/pay?tradeNo=${encodeURIComponent(tradeNo)}&totalAmount=${encodeURIComponent(amount)}&subject=${encodeURIComponent(desc)}`;
         window.open(url, '_blank');
     });
 </script>
